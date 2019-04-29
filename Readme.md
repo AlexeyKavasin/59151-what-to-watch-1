@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Alexey Kavasin](https://up.htmlacademy.ru/react/1/user/59151).
-* Наставник: `Неизвестно`.
+* Наставник: [Иван Захарченко](https://htmlacademy.ru/profile/id1033227).
 
 ---
 
