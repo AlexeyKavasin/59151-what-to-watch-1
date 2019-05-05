@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export const Catalog = ({names}) => {
+export const Catalog = ({names, onHeadingClick}) => {
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
@@ -47,7 +47,7 @@ export const Catalog = ({names}) => {
               <div className="small-movie-card__image">
                 <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt={name} width="280" height="175" />
               </div>
-              <h3 className="small-movie-card__title">
+              <h3 className="small-movie-card__title" onClick={onHeadingClick}>
                 <a className="small-movie-card__link" href="movie-page.html">{name}</a>
               </h3>
             </article>
@@ -63,5 +63,10 @@ export const Catalog = ({names}) => {
 };
 
 Catalog.propTypes = {
-  names: PropTypes.array.isRequired
+  names: PropTypes.array.isRequired,
+  onHeadingClick: PropTypes.func
+};
+
+Catalog.defaultProps = {
+  onHeadingClick: () => {}
 };
