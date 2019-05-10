@@ -1,12 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Catalog} from './catalog.jsx';
+import {MovieList} from './movielist.jsx';
 import films from '../../mocks/films.js';
 
-it(`Catalog renders correctly`, () => {
+it(`Movie list renders correctly`, () => {
   const tree = renderer
-    .create(<Catalog
+    .create(<MovieList
       films={films}
+      onPlayBtnClick={() => {}}
     />)
     .toJSON();
 
