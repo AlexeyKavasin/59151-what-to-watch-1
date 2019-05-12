@@ -1,30 +1,40 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {propTypes, defaultProps} from "../../proptypes/moviecard.props";
 
-export const MovieCard = ({name, src, onPlayBtnClick, onMouseOver}) => {
-  return (
-    <React.Fragment>
-      <article className="small-movie-card catalog__movies-card" onMouseOver={onMouseOver}>
-        <button className="small-movie-card__play-btn" type="button" onClick={onPlayBtnClick}>Play</button>
-        <div className="small-movie-card__image">
-          <img src={src} alt={name} width="280" height="175" />
-        </div>
-        <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">{name}</a>
-        </h3>
-      </article>
-    </React.Fragment>
-  );
-};
+export class MovieCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handlePlayClick = this.handlePlayClick.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+  }
 
-MovieCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  onPlayBtnClick: PropTypes.func,
-  onMouseOver: PropTypes.func,
-  src: PropTypes.string.isRequired
-};
+  handlePlayClick(event) {
+    const {onPlayClick, id} = this.props;
+    onPlayClick(event, id);
+  }
 
-MovieCard.defaultProps = {
-  onPlayBtnClick: () => {},
-  onMouseOver: () => {}
-};
+  handleMouseOver(event) {
+    const {onMouseOver, id} = this.props;
+    onMouseOver(event, id);
+  }
+
+  render() {
+    const {name, src, id} = this.props;
+    return (
+      <React.Fragment>
+        <article className="small-movie-card catalog__movies-card" id={id} onMouseOver={this.handleMouseOver}>
+          <button className="small-movie-card__play-btn" type="button" onClick={this.handlePlayClick}>Play</button>
+          <div className="small-movie-card__image">
+            <img src={src} alt={name} width="280" height="175" />
+          </div>
+          <h3 className="small-movie-card__title">
+            <a className="small-movie-card__link" href="movie-page.html">{name}</a>
+          </h3>
+        </article>
+      </React.Fragment>
+    );
+  }
+}
+
+MovieCard.propTypes = propTypes;
+MovieCard.defaultProps = defaultProps;

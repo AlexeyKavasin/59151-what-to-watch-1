@@ -9,6 +9,7 @@ it(`Movie card renders correctly`, () => {
     .create(<MovieCard
       name={film.name}
       src={film.src}
+      id={film.id}
     />)
     .toJSON();
 

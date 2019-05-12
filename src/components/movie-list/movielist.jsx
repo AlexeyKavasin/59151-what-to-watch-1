@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {MovieCard} from "../movie-card/moviecard.jsx";
+import {propTypes as movieCardPropTypes} from "../../proptypes/moviecard.props";
 
 export class MovieList extends React.Component {
   constructor(props) {
@@ -8,25 +9,34 @@ export class MovieList extends React.Component {
     this.state = {
       activeCard: -1
     };
+    this.handlePlayClick = this.handlePlayClick.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+  }
+
+  handlePlayClick(event, id) {
+    this.setState({
+      id
+    });
+  }
+
+  handleMouseOver(event, id) {
+    this.setState({
+      activeCard: id
+    });
   }
 
   render() {
     const {films} = this.props;
     return (
       <div className="catalog__movies-list">
-        {films.map((film, ind) => {
+        {films.map((film, index) => {
           return <MovieCard
             name={film.name}
             src={film.src}
-            key={ind}
-            onPlayBtnClick={() => {
-              return this.state.activeCard;
-            }}
-            onMouseOver={() => {
-              this.setState({
-                activeCard: ind
-              });
-            }}
+            key={index}
+            id={film.id}
+            onPlayClick={this.handlePlayClick}
+            onMouseOver={this.handleMouseOver}
           />;
         })}
       </div>
@@ -35,9 +45,6 @@ export class MovieList extends React.Component {
 }
 
 MovieList.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired
-  })).isRequired
+  films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired
 };
 

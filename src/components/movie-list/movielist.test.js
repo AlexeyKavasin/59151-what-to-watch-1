@@ -7,7 +7,7 @@ it(`Movie list renders correctly`, () => {
   const tree = renderer
     .create(<MovieList
       films={films}
-      onPlayBtnClick={() => {}}
+      onPlayClick={() => {}}
     />)
     .toJSON();
 
