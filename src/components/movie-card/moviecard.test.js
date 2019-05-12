@@ -1,12 +1,15 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Catalog} from './catalog.jsx';
+import {MovieCard} from './moviecard.jsx';
 import films from '../../mocks/films.js';
 
-it(`Catalog renders correctly`, () => {
+it(`Movie card renders correctly`, () => {
+  const film = films[0];
   const tree = renderer
-    .create(<Catalog
-      films={films}
+    .create(<MovieCard
+      name={film.name}
+      src={film.src}
+      id={film.id}
     />)
     .toJSON();
 
