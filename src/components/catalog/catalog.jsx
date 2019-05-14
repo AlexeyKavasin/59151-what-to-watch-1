@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export class Catalog extends React.Component {
+export class Catalog extends React.PureComponent {
   render() {
     return (
       <section className="catalog">

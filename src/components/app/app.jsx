@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export class App extends React.Component {
+export class App extends React.PureComponent {
   render() {
     return (
       <div>

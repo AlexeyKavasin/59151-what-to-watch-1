@@ -8,7 +8,7 @@ it(`Movie card renders correctly`, () => {
   const tree = renderer
     .create(<MovieCard
       name={film.name}
-      src={film.src}
+      poster={film.poster}
       id={film.id}
     />)
     .toJSON();

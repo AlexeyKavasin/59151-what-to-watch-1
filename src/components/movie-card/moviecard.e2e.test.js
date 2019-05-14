@@ -8,15 +8,15 @@ Enzyme.configure({adapter: new Adapter()});
 const mock = {
   id: 0,
   name: `Fantastic Beasts`,
-  src: `img/fantastic-beasts-the-crimes-of-grindexelwald.jpg`
+  poster: `img/fantastic-beasts-the-crimes-of-grindexelwald.jpg`
 };
 
 it(`Click on play returns correct id`, () => {
-  const {id, name, src} = mock;
+  const {id, name, poster} = mock;
   const handleClick = jest.fn();
   const movieCard = shallow(<MovieCard
     name={name}
-    src={src}
+    src={poster}
     onPlayClick={handleClick}
     id={id}
   />);

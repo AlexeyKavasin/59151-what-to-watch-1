@@ -27,12 +27,13 @@ export class MovieList extends React.Component {
 
   render() {
     const {films} = this.props;
-    return (
+    return <React.Fragment>
       <div className="catalog__movies-list">
         {films.map((film, index) => {
           return <MovieCard
             name={film.name}
-            src={film.src}
+            poster={film.poster}
+            trailer={film.trailer}
             key={index}
             id={film.id}
             onPlayClick={this.handlePlayClick}
@@ -40,7 +41,7 @@ export class MovieList extends React.Component {
           />;
         })}
       </div>
-    );
+    </React.Fragment>;
   }
 }
 

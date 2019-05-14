@@ -4,12 +4,12 @@ export const propTypes = {
   name: PropTypes.string.isRequired,
   onPlayClick: PropTypes.func,
   onMouseOver: PropTypes.func,
-  src: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired
 };
 
 export const defaultProps = {
   onPlayClick: () => {},
   onMouseOver: () => {},
-  src: `https://placehold.it/280x175`
+  poster: `https://placehold.it/280x175`
 };
