@@ -9,7 +9,7 @@ it(`Movie card renders correctly`, () => {
   const tree = renderer
     .create(<MovieCard name={film.name} id={film.id} trailer={film.trailer} poster={film.poster} isPlaying={false}>
       <VideoPlayer trailer={film.trailer} poster={film.poster} isPlaying={false}/>
-    </MovieCard>)
+    </MovieCard>, {createNodeMock: () => ({addEventListener() {}, removeEventListener() {}})})
     .toJSON();
 
   expect(tree).toMatchSnapshot();

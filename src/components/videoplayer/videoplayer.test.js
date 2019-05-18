@@ -10,7 +10,7 @@ it(`Videoplayer renders correctly`, () => {
       trailer={film.trailer}
       poster={film.poster}
       isPlaying={false}
-    />)
+    />, {createNodeMock: () => ({addEventListener() {}, removeEventListener() {}})})
     .toJSON();
 
   expect(tree).toMatchSnapshot();

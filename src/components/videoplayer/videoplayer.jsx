@@ -14,6 +14,8 @@ export class VideoPlayer extends React.PureComponent {
 
     this.playerTimeout = null;
     this.playerDelay = 1000;
+    this.startPlaying = this.startPlaying.bind(this);
+    this.pausePlaying = this.pausePlaying.bind(this);
   }
 
   render() {
@@ -31,34 +33,34 @@ export class VideoPlayer extends React.PureComponent {
     </React.Fragment>;
   }
 
+  pausePlaying() {
+    this.setState({
+      isPlaying: false,
+    });
+  }
+
+  startPlaying() {
+    this.setState({
+      isPlaying: true,
+    });
+  }
+
   componentDidMount() {
     const video = this._videoRef.current;
 
-    if (video) {
-      video.oncanplaythrough = () => this.setState({
-        isLoading: false,
-      });
+    video.addEventListener(`canplaythrough`, () => this.setState({
+      isLoading: false,
+    }), {once: true});
 
-      video.onplay = () => {
-        this.setState({
-          isPlaying: true,
-        });
-      };
-
-      video.onpause = () => this.setState({
-        isPlaying: false,
-      });
-    }
+    video.addEventListener(`play`, this.startPlaying);
+    video.addEventListener(`pause`, this.pausePlaying);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const video = this._videoRef.current;
+    clearTimeout(this.playerTimeout);
 
-    if (this.playerTimeout) {
-      clearTimeout(this.playerTimeout);
-    }
-
-    if (video) {
+    if (prevProps.isPlaying !== this.props.isPlaying) {
       if (this.props.isPlaying) {
         this.playerTimeout = setTimeout(() => {
           video.play();
@@ -73,12 +75,9 @@ export class VideoPlayer extends React.PureComponent {
   componentWillUnmount() {
     const video = this._videoRef.current;
 
-    if (video) {
-      video.oncanplaythrough = null;
-      video.onplay = null;
-      video.onpause = null;
-      video.src = ``;
-    }
+    video.removeEventListener(`play`, this.startPlaying);
+    video.removeEventListener(`pause`, this.pausePlaying);
+    video.src = ``;
   }
 }
 
