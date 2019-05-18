@@ -7,24 +7,22 @@ exports[`Movie list renders correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     id={0}
+    onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
-    <button
-      className="small-movie-card__play-btn"
-      onClick={[Function]}
-      type="button"
-    >
-      Play
-    </button>
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Fantastic Beasts"
+      <video
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        muted={true}
+        poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
         width="280"
-      />
+      >
+        <source
+          src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+        />
+      </video>
     </div>
     <h3
       className="small-movie-card__title"
@@ -40,24 +38,22 @@ exports[`Movie list renders correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     id={1}
+    onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
-    <button
-      className="small-movie-card__play-btn"
-      onClick={[Function]}
-      type="button"
-    >
-      Play
-    </button>
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Bohemian Rhapsody"
+      <video
         height="175"
-        src="img/bohemian-rhapsody.jpg"
+        muted={true}
+        poster="img/bohemian-rhapsody.jpg"
         width="280"
-      />
+      >
+        <source
+          src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+        />
+      </video>
     </div>
     <h3
       className="small-movie-card__title"
@@ -73,24 +69,22 @@ exports[`Movie list renders correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     id={2}
+    onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
-    <button
-      className="small-movie-card__play-btn"
-      onClick={[Function]}
-      type="button"
-    >
-      Play
-    </button>
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Macbeth"
+      <video
         height="175"
-        src="img/macbeth.jpg"
+        muted={true}
+        poster="img/macbeth.jpg"
         width="280"
-      />
+      >
+        <source
+          src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+        />
+      </video>
     </div>
     <h3
       className="small-movie-card__title"
@@ -106,24 +100,22 @@ exports[`Movie list renders correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     id={3}
+    onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
-    <button
-      className="small-movie-card__play-btn"
-      onClick={[Function]}
-      type="button"
-    >
-      Play
-    </button>
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Aviator"
+      <video
         height="175"
-        src="img/Aviator.jpg"
+        muted={true}
+        poster="img/Aviator.jpg"
         width="280"
-      />
+      >
+        <source
+          src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+        />
+      </video>
     </div>
     <h3
       className="small-movie-card__title"
@@ -139,24 +131,22 @@ exports[`Movie list renders correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     id={4}
+    onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
-    <button
-      className="small-movie-card__play-btn"
-      onClick={[Function]}
-      type="button"
-    >
-      Play
-    </button>
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Pulp Fiction"
+      <video
         height="175"
-        src="img/pulp-fiction.jpg"
+        muted={true}
+        poster="img/pulp-fiction.jpg"
         width="280"
-      />
+      >
+        <source
+          src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+        />
+      </video>
     </div>
     <h3
       className="small-movie-card__title"

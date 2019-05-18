@@ -9,19 +9,19 @@ export class MovieList extends React.Component {
     this.state = {
       activeCard: -1
     };
-    this.handlePlayClick = this.handlePlayClick.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
-  handlePlayClick(event, id) {
+  handleMouseOver(id) {
     this.setState({
-      id
+      activeCard: id
     });
   }
 
-  handleMouseOver(event, id) {
+  handleMouseLeave() {
     this.setState({
-      activeCard: id
+      activeCard: -1
     });
   }
 
@@ -36,8 +36,10 @@ export class MovieList extends React.Component {
             trailer={film.trailer}
             key={index}
             id={film.id}
+            isPlaying={this.state.activeCard === film.id}
             onPlayClick={this.handlePlayClick}
             onMouseOver={this.handleMouseOver}
+            onMouseLeave={this.handleMouseLeave}
           />;
         })}
       </div>
@@ -48,4 +50,3 @@ export class MovieList extends React.Component {
 MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired
 };
-

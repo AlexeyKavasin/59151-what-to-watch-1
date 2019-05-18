@@ -5,27 +5,26 @@ import {propTypes, defaultProps} from "../../proptypes/moviecard.props";
 export class MovieCard extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.handlePlayClick = this.handlePlayClick.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
-  handlePlayClick(event) {
-    const {onPlayClick, id} = this.props;
-    onPlayClick(event, id);
-  }
-
-  handleMouseOver(event) {
+  handleMouseOver() {
     const {onMouseOver, id} = this.props;
-    onMouseOver(event, id);
+    onMouseOver(id);
+  }
+
+  handleMouseLeave() {
+    const {onMouseLeave} = this.props;
+    onMouseLeave();
   }
 
   render() {
-    const {name, poster, trailer, id} = this.props;
+    const {name, poster, trailer, id, isPlaying} = this.props;
     return <React.Fragment>
-      <article className="small-movie-card catalog__movies-card" id={id} onMouseOver={this.handleMouseOver}>
-        <button className="small-movie-card__play-btn" type="button" onClick={this.handlePlayClick}>Play</button>
+      <article className="small-movie-card catalog__movies-card" id={id} onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>
         <div className="small-movie-card__image">
-          <VideoPlayer trailer={trailer} poster={poster} onMouseOver={this.handleMouseOver} isPlaying={false}/>
+          <VideoPlayer trailer={trailer} poster={poster} isPlaying={isPlaying}/>
         </div>
         <h3 className="small-movie-card__title">
           <a className="small-movie-card__link" href="movie-page.html">{name}</a>

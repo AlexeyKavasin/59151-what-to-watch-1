@@ -1,16 +1,15 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {MovieCard} from './moviecard.jsx';
+import {VideoPlayer} from '../videoplayer/videoplayer.jsx';
 import films from '../../mocks/films.js';
 
 it(`Movie card renders correctly`, () => {
   const film = films[0];
   const tree = renderer
-    .create(<MovieCard
-      name={film.name}
-      poster={film.poster}
-      id={film.id}
-    />)
+    .create(<MovieCard name={film.name} id={film.id} trailer={film.trailer} poster={film.poster} isPlaying={false}>
+      <VideoPlayer trailer={film.trailer} poster={film.poster} isPlaying={false}/>
+    </MovieCard>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
