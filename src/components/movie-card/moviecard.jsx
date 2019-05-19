@@ -1,6 +1,6 @@
 import React from "react";
 import {VideoPlayer} from "../videoplayer/videoplayer.jsx";
-import {propTypes, defaultProps} from "../../proptypes/moviecard.props";
+import {propTypes, defaultProps} from "./moviecard.props";
 
 export class MovieCard extends React.PureComponent {
   constructor(props) {
@@ -9,14 +9,14 @@ export class MovieCard extends React.PureComponent {
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
-  handleMouseOver() {
+  handleMouseOver(event) {
     const {onMouseOver, id} = this.props;
-    onMouseOver(id);
+    onMouseOver(id, event);
   }
 
-  handleMouseLeave() {
+  handleMouseLeave(event) {
     const {onMouseLeave} = this.props;
-    onMouseLeave();
+    onMouseLeave(event);
   }
 
   render() {

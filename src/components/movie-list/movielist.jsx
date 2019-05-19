@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {MovieCard} from "../movie-card/moviecard.jsx";
-import {propTypes as movieCardPropTypes} from "../../proptypes/moviecard.props";
+import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
 
 export class MovieList extends React.Component {
   constructor(props) {

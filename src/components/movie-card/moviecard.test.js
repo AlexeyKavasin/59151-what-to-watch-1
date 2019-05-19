@@ -7,8 +7,8 @@ import films from '../../mocks/films.js';
 it(`Movie card renders correctly`, () => {
   const film = films[0];
   const tree = renderer
-    .create(<MovieCard name={film.name} id={film.id} trailer={film.trailer} poster={film.poster} isPlaying={false}>
-      <VideoPlayer trailer={film.trailer} poster={film.poster} isPlaying={false}/>
+    .create(<MovieCard {...film} isPlaying={false}>
+      <VideoPlayer {...film} isPlaying={false}/>
     </MovieCard>, {createNodeMock: () => ({addEventListener() {}, removeEventListener() {}})})
     .toJSON();
 

@@ -30,6 +30,6 @@ it(`Mouse over card returns correct card id`, () => {
   const wrapper = movieCard.find(`.small-movie-card`);
   expect(wrapper.length).toEqual(1);
 
-  wrapper.simulate(`mouseover`);
-  expect(handleMouseOver).toHaveBeenCalledWith(id);
+  wrapper.simulate(`mouseover`, {});
+  expect(handleMouseOver).toHaveBeenCalledWith(id, expect.any(Object));
 });
