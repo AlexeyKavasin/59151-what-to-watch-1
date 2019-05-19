@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {ActionCreators} from "../../reducer";
 
-export class App extends React.PureComponent {
+class App extends React.PureComponent {
   render() {
     return (
       <div>
@@ -110,3 +112,21 @@ export class App extends React.PureComponent {
 App.propTypes = {
   children: PropTypes.node
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  genre: state.genre,
+  films: state.films
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreChange: (genre) => {
+    dispatch(ActionCreators[`SELECT_GENRE`](genre));
+  }
+});
+
+export {App};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
