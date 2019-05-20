@@ -34,6 +34,7 @@ export class MovieList extends React.Component {
             name={film.name}
             poster={film.poster}
             trailer={film.trailer}
+            genre={film.genre}
             key={index}
             id={film.id}
             isPlaying={this.state.activeCard === film.id}
