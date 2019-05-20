@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {MovieCard} from "../movie-card/moviecard.jsx";
-import {propTypes as movieCardPropTypes} from "../../proptypes/moviecard.props";
+import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
 
 export class MovieList extends React.Component {
   constructor(props) {
@@ -9,42 +9,44 @@ export class MovieList extends React.Component {
     this.state = {
       activeCard: -1
     };
-    this.handlePlayClick = this.handlePlayClick.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
-  handlePlayClick(event, id) {
-    this.setState({
-      id
-    });
-  }
-
-  handleMouseOver(event, id) {
+  handleMouseOver(id) {
     this.setState({
       activeCard: id
     });
   }
 
+  handleMouseLeave() {
+    this.setState({
+      activeCard: -1
+    });
+  }
+
   render() {
     const {films} = this.props;
-    return (
+    return <React.Fragment>
       <div className="catalog__movies-list">
         {films.map((film, index) => {
           return <MovieCard
             name={film.name}
-            src={film.src}
+            poster={film.poster}
+            trailer={film.trailer}
             key={index}
             id={film.id}
+            isPlaying={this.state.activeCard === film.id}
             onPlayClick={this.handlePlayClick}
             onMouseOver={this.handleMouseOver}
+            onMouseLeave={this.handleMouseLeave}
           />;
         })}
       </div>
-    );
+    </React.Fragment>;
   }
 }
 
 MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired
 };
-

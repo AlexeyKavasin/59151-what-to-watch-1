@@ -1,12 +1,15 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {MovieList} from './movielist.jsx';
+import {VideoPlayer} from './videoplayer.jsx';
 import films from '../../mocks/films.js';
 
-it(`Movie list renders correctly`, () => {
+it(`Videoplayer renders correctly`, () => {
+  const film = films[0];
   const tree = renderer
-    .create(<MovieList
-      films={films}
+    .create(<VideoPlayer
+      trailer={film.trailer}
+      poster={film.poster}
+      isPlaying={false}
     />, {createNodeMock: () => ({addEventListener() {}, removeEventListener() {}})})
     .toJSON();
 

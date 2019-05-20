@@ -2,28 +2,34 @@ import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {MovieCard} from '../movie-card/moviecard.jsx';
+import {VideoPlayer} from '../videoplayer/videoplayer.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
 
 const mock = {
   id: 0,
   name: `Fantastic Beasts`,
-  src: `img/fantastic-beasts-the-crimes-of-grindexelwald.jpg`
+  poster: `img/fantastic-beasts-the-crimes-of-grindexelwald.jpg`,
+  trailer: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+  isPlaying: false
 };
 
-it(`Click on play returns correct id`, () => {
-  const {id, name, src} = mock;
-  const handleClick = jest.fn();
+it(`Mouse over card returns correct card id`, () => {
+  const {id, name, poster, trailer, isPlaying} = mock;
+  const handleMouseOver = jest.fn();
   const movieCard = shallow(<MovieCard
     name={name}
-    src={src}
-    onPlayClick={handleClick}
-    id={id}
-  />);
+    poster={poster}
+    trailer={trailer}
+    isPlaying={isPlaying}
+    onMouseOver={handleMouseOver}
+    id={id}>
+    <VideoPlayer trailer={trailer} poster={poster} isPlaying={isPlaying}/>
+  </MovieCard>);
 
-  const playBtn = movieCard.find(`.small-movie-card__play-btn`);
-  expect(playBtn.length).toEqual(1);
+  const wrapper = movieCard.find(`.small-movie-card`);
+  expect(wrapper.length).toEqual(1);
 
-  playBtn.simulate(`click`, {});
-  expect(handleClick).toHaveBeenCalledWith(expect.any(Object), id);
+  wrapper.simulate(`mouseover`, {});
+  expect(handleMouseOver).toHaveBeenCalledWith(id, expect.any(Object));
 });
