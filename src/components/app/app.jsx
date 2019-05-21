@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreators} from "../../reducer";
+import { Catalog } from "../catalog/catalog.jsx";
 
 class App extends React.PureComponent {
   render() {
@@ -89,7 +90,9 @@ class App extends React.PureComponent {
         </section>
 
         <div className="page-content">
-          {this.props.children}
+          
+          <Catalog films={this.props.films} onGenreChange={this.props.onGenreChange} />
+
           <footer className="page-footer">
             <div className="logo">
               <a className="logo__link logo__link--light">
@@ -98,7 +101,6 @@ class App extends React.PureComponent {
                 <span className="logo__letter logo__letter--3">W</span>
               </a>
             </div>
-
             <div className="copyright">
               <p>© 2019 What to watch Ltd.</p>
             </div>
@@ -119,8 +121,9 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGenreChange: (genre) => {
+  onGenreChange: (genre, films) => {
     dispatch(ActionCreators[`SELECT_GENRE`](genre));
+    dispatch(ActionCreators[`GET_MOVIES_BY_GENRE`](films));
   }
 });
 

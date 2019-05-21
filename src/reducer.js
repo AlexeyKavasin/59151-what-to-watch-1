@@ -15,6 +15,30 @@ const initialState = {
       id: 1,
       trailer: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       isPlaying: false,
+      genre: `Comedy`
+    },
+    {
+      name: `Macbeth`,
+      poster: `img/macbeth.jpg`,
+      id: 2,
+      trailer: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      isPlaying: false,
+      genre: `Comedy`
+    },
+    {
+      name: `Aviator`,
+      poster: `img/Aviator.jpg`,
+      id: 3,
+      trailer: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      isPlaying: false,
+      genre: `Comedy`
+    },
+    {
+      name: `Pulp Fiction`,
+      poster: `img/pulp-fiction.jpg`,
+      id: 4,
+      trailer: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      isPlaying: false,
       genre: `Documentary`
     }
   ]
@@ -22,10 +46,15 @@ const initialState = {
 
 export const ActionCreators = {
   'SELECT_GENRE': (genre) => {
-    // TODO проверка что таковой есть или уже не выбран
     return {
       type: `SELECT_GENRE`,
       payload: genre
+    };
+  },
+  'GET_MOVIES_BY_GENRE': (films) => {
+    return {
+      type: `SELECT_GENRE`,
+      payload: films
     };
   }
 };
