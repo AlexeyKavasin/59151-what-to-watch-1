@@ -1,24 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
+import films from "../../mocks/films";
 
 export class GenresList extends React.PureComponent {
   constructor(props) {
     super(props);
     this.handleGenreChange = this.handleGenreChange.bind(this);
-  }
-
-  componentDidMount() {
-  }
-
-  filterFilmsByGenre(films, selectedGenre) {
-    if (Array.isArray(films)) {
-      if (selectedGenre === `All genres`) {
-        return films;
-      }
-
-      return films.filter(film => film.genre === selectedGenre);
-    }
   }
 
   handleGenreChange() {
@@ -27,17 +15,11 @@ export class GenresList extends React.PureComponent {
   }
 
   render() {
-    const films = this.filterFilmsByGenre(this.props.films, `All genres`);
-    const genres = [...new Set(films.map(films => films.genre))];
+    const genres = [`All genres`, ...new Set(this.props.films.map(films => films.genre))];
 
     // TODO handle activeState
     return <React.Fragment>
       <ul className="catalog__genres-list">
-          <li 
-            className="catalog__genres-item catalog__genres-item--active"
-            key={`genres-item-all-genres`}>
-            <a href="#" className="catalog__genres-link" onClick={this.handleGenreChange}>All genres</a>
-          </li>
         {genres.map((genre, index) => {
           return <li 
             className={`catalog__genres-item`}
