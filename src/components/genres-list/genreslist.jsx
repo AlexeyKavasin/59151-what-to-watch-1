@@ -1,30 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {selectGenre} from "../../redux/actions";
 import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
-import films from "../../mocks/films";
 
-export class GenresList extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.handleGenreChange = this.handleGenreChange.bind(this);
-  }
-
-  handleGenreChange() {
-    const {onGenreChange} = this.props;
-    onGenreChange('Documentary', this.filterFilmsByGenre(this.props.films, `Documentary`));
-  }
-
+class GenresList extends React.PureComponent {
   render() {
-    const genres = [`All genres`, ...new Set(this.props.films.map(films => films.genre))];
-
-    // TODO handle activeState
     return <React.Fragment>
       <ul className="catalog__genres-list">
-        {genres.map((genre, index) => {
-          return <li 
-            className={`catalog__genres-item`}
-            key={`genres-item-${index}`}>
-            <a href="#" className="catalog__genres-link" onClick={this.handleGenreChange}>{genre}</a>
+        <li className={`catalog__genres-item catalog__genres-item--active`}>
+          <a href="#" className="catalog__genres-link" onClick={() => this.props.onGenreChange(`All genres`)}>All genres</a>
+        </li>
+        {this.props.genres.map((genre, index) => {
+          return <li className={`catalog__genres-item`} key={`genres-item-${index}`}>
+            <a href="#" className="catalog__genres-link" onClick={() => this.props.onGenreChange(genre)}>{genre}</a>
           </li>;
         })}
       </ul>
@@ -32,6 +21,26 @@ export class GenresList extends React.PureComponent {
   }
 }
 
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  currentGenre: state.currentGenre,
+  genres: state.genres
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreChange: (genre) => {
+    dispatch(selectGenre(genre));
+  }
+});
+
 GenresList.propTypes = {
+  currentGenre: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired
 };
+
+export {GenresList};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GenresList)

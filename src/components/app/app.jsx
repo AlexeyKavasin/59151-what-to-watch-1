@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {ActionCreators} from "../../reducer";
-import { Catalog } from "../catalog/catalog.jsx";
+import {Catalog} from "../catalog/catalog.jsx";
+import films from "../../mocks/films";
 
 class App extends React.PureComponent {
   render() {
@@ -91,7 +90,7 @@ class App extends React.PureComponent {
 
         <div className="page-content">
           
-          <Catalog films={this.props.films} onGenreChange={this.props.onGenreChange} />
+          <Catalog films={films}/>
 
           <footer className="page-footer">
             <div className="logo">
@@ -115,21 +114,4 @@ App.propTypes = {
   children: PropTypes.node
 };
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  genre: state.genre,
-  films: state.films
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onGenreChange: (genre, films) => {
-    dispatch(ActionCreators[`SELECT_GENRE`](genre));
-    dispatch(ActionCreators[`GET_MOVIES_BY_GENRE`](films));
-  }
-});
-
-export {App};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;
