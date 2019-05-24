@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import {MovieCard} from "../movie-card/moviecard.jsx";
 import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
+import {connect} from "react-redux";
 
-export class MovieList extends React.Component {
+class MovieList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,3 +52,26 @@ export class MovieList extends React.Component {
 MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired
 };
+
+const filterFilms = (films, selectedGenre) => {
+  if (selectedGenre === `All genres`) {
+    return films;
+  }
+
+  return films.filter((film) => film.genre === selectedGenre);
+};
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  currentGenre: state.currentGenre,
+  genres: state.genres,
+  films: filterFilms(state.films, state.currentGenre),
+});
+
+const mapDispatchToProps = () => ({});
+
+export {MovieList};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MovieList);

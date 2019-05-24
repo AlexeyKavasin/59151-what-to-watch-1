@@ -1,13 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Catalog} from './catalog.jsx';
-import films from '../../mocks/films.js';
+import {initialState} from '../../redux/initialstate';
 
 it(`Catalog renders correctly`, () => {
   const tree = renderer
-    .create(<Catalog
-      films={films}
-    />)
+    .create(<Catalog {...initialState}/>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

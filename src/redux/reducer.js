@@ -1,7 +1,7 @@
 import {initialState} from "./initialstate";
 import {
   SELECT_GENRE,
-} from "./actions"
+} from "./actions";
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {

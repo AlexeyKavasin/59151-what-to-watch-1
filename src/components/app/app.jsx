@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Catalog} from "../catalog/catalog.jsx";
-import films from "../../mocks/films";
+import Catalog from "../catalog/catalog.jsx";
 
 class App extends React.PureComponent {
   render() {
@@ -89,8 +88,8 @@ class App extends React.PureComponent {
         </section>
 
         <div className="page-content">
-          
-          <Catalog films={films}/>
+
+          <Catalog/>
 
           <footer className="page-footer">
             <div className="logo">
@@ -114,4 +113,5 @@ App.propTypes = {
   children: PropTypes.node
 };
 
+export {App};
 export default App;

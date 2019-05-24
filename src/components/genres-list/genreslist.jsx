@@ -8,11 +8,13 @@ class GenresList extends React.PureComponent {
   render() {
     return <React.Fragment>
       <ul className="catalog__genres-list">
-        <li className={`catalog__genres-item catalog__genres-item--active`}>
+        <li className={`catalog__genres-item ${this.props.currentGenre === `All genres` ? `catalog__genres-item--active` : ``}`}>
           <a href="#" className="catalog__genres-link" onClick={() => this.props.onGenreChange(`All genres`)}>All genres</a>
         </li>
         {this.props.genres.map((genre, index) => {
-          return <li className={`catalog__genres-item`} key={`genres-item-${index}`}>
+          return <li
+            className={`catalog__genres-item ${this.props.currentGenre === genre ? `catalog__genres-item--active` : ``}`}
+            key={`genres-item-${index}`}>
             <a href="#" className="catalog__genres-link" onClick={() => this.props.onGenreChange(genre)}>{genre}</a>
           </li>;
         })}
@@ -23,7 +25,8 @@ class GenresList extends React.PureComponent {
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   currentGenre: state.currentGenre,
-  genres: state.genres
+  genres: state.genres,
+  films: state.films,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -35,7 +38,8 @@ const mapDispatchToProps = (dispatch) => ({
 GenresList.propTypes = {
   currentGenre: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired
+  films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired,
+  onGenreChange: PropTypes.func
 };
 
 export {GenresList};
@@ -43,4 +47,4 @@ export {GenresList};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GenresList)
+)(GenresList);
