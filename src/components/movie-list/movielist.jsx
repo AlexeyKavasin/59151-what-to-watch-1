@@ -2,8 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import {MovieCard} from "../movie-card/moviecard.jsx";
 import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
+import {connect} from "react-redux";
+import {ALL_GENRES} from "../../redux/types";
 
-export class MovieList extends React.Component {
+class MovieList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,7 +15,7 @@ export class MovieList extends React.Component {
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
-  handleMouseOver(id) {
+  handleMouseOver(event, {id}) {
     this.setState({
       activeCard: id
     });
@@ -34,6 +36,7 @@ export class MovieList extends React.Component {
             name={film.name}
             poster={film.poster}
             trailer={film.trailer}
+            genre={film.genre}
             key={index}
             id={film.id}
             isPlaying={this.state.activeCard === film.id}
@@ -50,3 +53,27 @@ export class MovieList extends React.Component {
 MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired
 };
+
+const filterFilms = (films, selectedGenre) => {
+  if (selectedGenre === ALL_GENRES) {
+    return films;
+  }
+
+  return films.filter((film) => film.genre === selectedGenre);
+};
+
+const mapStateToProps = (state, ownProps) => ({
+  ownProps,
+  currentGenre: state.currentGenre,
+  genres: state.genres,
+  films: filterFilms(state.films, state.currentGenre),
+});
+
+const mapDispatchToProps = () => ({});
+
+export {MovieList};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MovieList);

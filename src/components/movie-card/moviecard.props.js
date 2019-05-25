@@ -4,7 +4,8 @@ export const propTypes = {
   name: PropTypes.string.isRequired,
   onMouseOver: PropTypes.func,
   poster: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
+  genre: PropTypes.string
 };
 
 export const defaultProps = {

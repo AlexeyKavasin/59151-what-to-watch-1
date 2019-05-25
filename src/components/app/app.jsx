@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Catalog from "../catalog/catalog.jsx";
 
-export class App extends React.PureComponent {
+export default class App extends React.PureComponent {
   render() {
     return (
       <div>
@@ -87,7 +88,9 @@ export class App extends React.PureComponent {
         </section>
 
         <div className="page-content">
-          {this.props.children}
+
+          <Catalog/>
+
           <footer className="page-footer">
             <div className="logo">
               <a className="logo__link logo__link--light">
@@ -96,7 +99,6 @@ export class App extends React.PureComponent {
                 <span className="logo__letter logo__letter--3">W</span>
               </a>
             </div>
-
             <div className="copyright">
               <p>© 2019 What to watch Ltd.</p>
             </div>

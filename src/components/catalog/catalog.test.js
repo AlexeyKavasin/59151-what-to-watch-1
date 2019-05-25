@@ -1,14 +1,16 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Catalog} from './catalog.jsx';
-import films from '../../mocks/films.js';
+import Catalog from './catalog.jsx';
 
-it(`Catalog renders correctly`, () => {
-  const tree = renderer
-    .create(<Catalog
-      films={films}
-    />)
-    .toJSON();
+jest.mock(`../genres-list/genreslist.jsx`, () => () => `GenresList`);
+jest.mock(`../movie-list/movielist.jsx`, () => () => `MovieList`);
 
-  expect(tree).toMatchSnapshot();
+describe(`Catalog tests`, () => {
+  it(`Catalog renders correctly`, () => {
+    const tree = renderer
+      .create(<Catalog/>)
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });

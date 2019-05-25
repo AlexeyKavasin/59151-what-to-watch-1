@@ -1,19 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {App} from "./components/app/app.jsx";
-import {Catalog} from "./components/catalog/catalog.jsx";
-import {MovieList} from "./components/movie-list/movielist.jsx";
-import films from "./mocks/films.js";
+import {createStore} from "redux";
+import {Provider} from "react-redux";
+import {reducer} from "./redux/reducer";
+import App from "./components/app/app.jsx";
+
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const init = () => {
   ReactDOM.render(
-      <App>
-        <Catalog>
-          <MovieList
-            films={films}
-          />
-        </Catalog>
-      </App>,
+      <Provider store={store}>
+        <App/>
+      </Provider>,
       document.querySelector(`#root`)
   );
 };

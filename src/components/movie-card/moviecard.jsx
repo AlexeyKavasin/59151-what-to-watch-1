@@ -11,12 +11,12 @@ export class MovieCard extends React.PureComponent {
 
   handleMouseOver(event) {
     const {onMouseOver, id} = this.props;
-    onMouseOver(id, event);
+    onMouseOver(event, {id});
   }
 
-  handleMouseLeave(event) {
+  handleMouseLeave() {
     const {onMouseLeave} = this.props;
-    onMouseLeave(event);
+    onMouseLeave();
   }
 
   render() {
