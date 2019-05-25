@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import GenresList from "../genres-list/genreslist.jsx";
 import MovieList from "../movie-list/movielist.jsx";
 
-class Catalog extends React.PureComponent {
+export default class Catalog extends React.PureComponent {
   render() {
     return (
       <section className="catalog">
@@ -21,6 +21,3 @@ class Catalog extends React.PureComponent {
 Catalog.propTypes = {
   onGenreChange: PropTypes.func
 };
-
-export {Catalog};
-export default Catalog;

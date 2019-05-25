@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {MovieCard} from './moviecard.jsx';
 import {VideoPlayer} from '../videoplayer/videoplayer.jsx';
-import films from '../../mocks/films.js';
+import films from '../../__fixtures__/films.js';
 
 it(`Movie card renders correctly`, () => {
   const film = films[0];

@@ -1,9 +1,10 @@
 import {reducer} from "./reducer";
+import {ALL_GENRES} from "./types";
 
 describe(`Reducer tests`, () => {
   it(`Returns initial state by default`, () => {
     expect(reducer(undefined, {})).toEqual({
-      currentGenre: `All genres`,
+      currentGenre: ALL_GENRES,
       genres: [`Comedy`, `Documentary`],
       films: [
         {
@@ -52,7 +53,7 @@ describe(`Reducer tests`, () => {
 
   it(`Selects genre`, () => {
     expect(reducer({
-      currentGenre: `All genres`
+      currentGenre: ALL_GENRES
     }, {
       type: `SELECT_GENRE`,
       payload: `Comedy`

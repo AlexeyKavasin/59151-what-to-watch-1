@@ -3,19 +3,20 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {selectGenre} from "../../redux/actions";
 import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
+import {ALL_GENRES} from "../../redux/types";
 
 class GenresList extends React.PureComponent {
   render() {
     return <React.Fragment>
       <ul className="catalog__genres-list">
-        <li className={`catalog__genres-item ${this.props.currentGenre === `All genres` ? `catalog__genres-item--active` : ``}`}>
-          <a href="#" className="catalog__genres-link" onClick={() => this.props.onGenreChange(`All genres`)}>All genres</a>
+        <li className={`catalog__genres-item ${this.props.currentGenre === ALL_GENRES ? `catalog__genres-item--active` : ``}`}>
+          <a href="#" className="catalog__genres-link" onClick={() => this.props.selectGenre(ALL_GENRES)}>{ALL_GENRES}</a>
         </li>
         {this.props.genres.map((genre, index) => {
           return <li
             className={`catalog__genres-item ${this.props.currentGenre === genre ? `catalog__genres-item--active` : ``}`}
             key={`genres-item-${index}`}>
-            <a href="#" className="catalog__genres-link" onClick={() => this.props.onGenreChange(genre)}>{genre}</a>
+            <a href="#" className="catalog__genres-link" onClick={() => this.props.selectGenre(genre)}>{genre}</a>
           </li>;
         })}
       </ul>
@@ -23,28 +24,27 @@ class GenresList extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+const mapStateToProps = (state, ownProps) => ({
+  ownProps,
   currentGenre: state.currentGenre,
   genres: state.genres,
   films: state.films,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onGenreChange: (genre) => {
-    dispatch(selectGenre(genre));
-  }
-});
+const mapDispatchToProps = {
+  selectGenre,
+};
 
 GenresList.propTypes = {
   currentGenre: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired,
-  onGenreChange: PropTypes.func
+  selectGenre: PropTypes.func
 };
 
 export {GenresList};
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(GenresList);

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {MovieCard} from "../movie-card/moviecard.jsx";
 import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
 import {connect} from "react-redux";
+import {ALL_GENRES} from "../../redux/types";
 
 class MovieList extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class MovieList extends React.Component {
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
-  handleMouseOver(id) {
+  handleMouseOver(event, {id}) {
     this.setState({
       activeCard: id
     });
@@ -54,14 +55,15 @@ MovieList.propTypes = {
 };
 
 const filterFilms = (films, selectedGenre) => {
-  if (selectedGenre === `All genres`) {
+  if (selectedGenre === ALL_GENRES) {
     return films;
   }
 
   return films.filter((film) => film.genre === selectedGenre);
 };
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+const mapStateToProps = (state, ownProps) => ({
+  ownProps,
   currentGenre: state.currentGenre,
   genres: state.genres,
   films: filterFilms(state.films, state.currentGenre),

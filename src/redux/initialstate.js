@@ -1,9 +1,10 @@
-import films from "../mocks/films";
+import films from "../__fixtures__/films";
+import {ALL_GENRES} from "./types";
 
 const genres = [...new Set(films.map((film) => film.genre))];
 
 export const initialState = {
-  currentGenre: `All genres`,
+  currentGenre: ALL_GENRES,
   genres,
   films
 };

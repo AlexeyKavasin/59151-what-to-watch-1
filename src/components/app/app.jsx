@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Catalog from "../catalog/catalog.jsx";
 
-class App extends React.PureComponent {
+export default class App extends React.PureComponent {
   render() {
     return (
       <div>
@@ -112,6 +112,3 @@ class App extends React.PureComponent {
 App.propTypes = {
   children: PropTypes.node
 };
-
-export {App};
-export default App;
