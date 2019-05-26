@@ -6,29 +6,8 @@ import {connect} from "react-redux";
 import {ALL_GENRES} from "../../redux/types";
 
 class MovieList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeCard: -1
-    };
-    this.handleMouseOver = this.handleMouseOver.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
-  }
-
-  handleMouseOver(event, {id}) {
-    this.setState({
-      activeCard: id
-    });
-  }
-
-  handleMouseLeave() {
-    this.setState({
-      activeCard: -1
-    });
-  }
-
   render() {
-    const {films} = this.props;
+    const {films, activeCard, onMouseOver, onMouseLeave} = this.props;
     return <React.Fragment>
       <div className="catalog__movies-list">
         {films.map((film, index) => {
@@ -39,10 +18,9 @@ class MovieList extends React.Component {
             genre={film.genre}
             key={index}
             id={film.id}
-            isPlaying={this.state.activeCard === film.id}
-            onPlayClick={this.handlePlayClick}
-            onMouseOver={this.handleMouseOver}
-            onMouseLeave={this.handleMouseLeave}
+            isPlaying={activeCard === film.id}
+            onMouseOver={() => onMouseOver(event, film)}
+            onMouseLeave={() => onMouseLeave(event)}
           />;
         })}
       </div>
@@ -51,7 +29,10 @@ class MovieList extends React.Component {
 }
 
 MovieList.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired
+  films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired,
+  activeCard: PropTypes.number.isRequired,
+  onMouseOver: PropTypes.func,
+  onMouseLeave: PropTypes.func
 };
 
 const filterFilms = (films, selectedGenre) => {

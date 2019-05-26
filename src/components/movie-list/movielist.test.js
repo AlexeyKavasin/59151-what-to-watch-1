@@ -7,6 +7,7 @@ it(`Movie list renders correctly`, () => {
   const tree = renderer
     .create(<MovieList
       films={films}
+      activeCard={-1}
     />, {createNodeMock: () => ({addEventListener() {}, removeEventListener() {}})})
     .toJSON();
 
