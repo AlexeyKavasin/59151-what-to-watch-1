@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {selectGenre} from "../../redux/actions";
+import {selectGenre, getFilmsByGenre} from "../../redux/actions";
 import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
 
 class GenresList extends React.PureComponent {
@@ -17,6 +17,7 @@ class GenresList extends React.PureComponent {
               onClick={(e) => {
                 e.preventDefault();
                 this.props.selectGenre(genre);
+                this.props.getFilmsByGenre(genre);
               }}>{genre}</a>
           </li>;
         })}
@@ -33,6 +34,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = {
   selectGenre,
+  getFilmsByGenre
 };
 
 GenresList.propTypes = {

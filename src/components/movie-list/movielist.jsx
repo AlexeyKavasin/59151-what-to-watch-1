@@ -64,7 +64,6 @@ const filterFilms = (films, selectedGenre) => {
 const mapStateToProps = (state, ownProps) => ({
   ownProps,
   currentGenre: state.currentGenre,
-  genres: state.genres,
   films: filterFilms(state.films, state.currentGenre),
 });
 
