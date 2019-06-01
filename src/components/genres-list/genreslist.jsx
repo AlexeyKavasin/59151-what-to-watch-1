@@ -42,6 +42,7 @@ GenresList.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired,
   selectGenre: PropTypes.func,
+  getFilmsByGenre: PropTypes.func,
 };
 
 export {GenresList};

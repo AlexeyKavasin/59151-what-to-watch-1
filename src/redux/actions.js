@@ -23,5 +23,5 @@ export function getFilmsByGenre(genre) {
   return {
     type: `GET_FILMS_BY_GENRE`,
     payload: filmsByGenre
-  }
+  };
 }
