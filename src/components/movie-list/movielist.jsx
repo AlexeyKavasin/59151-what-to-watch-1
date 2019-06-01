@@ -40,7 +40,6 @@ class MovieList extends React.Component {
             key={index}
             id={film.id}
             isPlaying={this.state.activeCard === film.id}
-            onPlayClick={this.handlePlayClick}
             onMouseOver={this.handleMouseOver}
             onMouseLeave={this.handleMouseLeave}
           />;
@@ -51,7 +50,7 @@ class MovieList extends React.Component {
 }
 
 MovieList.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired
+  films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired,
 };
 
 const filterFilms = (films, selectedGenre) => {
@@ -65,7 +64,6 @@ const filterFilms = (films, selectedGenre) => {
 const mapStateToProps = (state, ownProps) => ({
   ownProps,
   currentGenre: state.currentGenre,
-  genres: state.genres,
   films: filterFilms(state.films, state.currentGenre),
 });
 

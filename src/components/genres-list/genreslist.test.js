@@ -5,7 +5,7 @@ import {initialState} from '../../redux/initialstate';
 
 describe(`GenresList snapshot tests`, () => {
   it(`GenresList renders correctly`, () => {
-    const genres = initialState.genres;
+    const genres = [`All genres`, `Comedy`, `Documentary`];
     const films = initialState.films;
     const currentGenre = initialState.currentGenre;
     const tree = renderer

@@ -5,7 +5,6 @@ describe(`Reducer tests`, () => {
   it(`Returns initial state by default`, () => {
     expect(reducer(undefined, {})).toEqual({
       currentGenre: ALL_GENRES,
-      genres: [`Comedy`, `Documentary`],
       films: [
         {
           name: `Fantastic Beasts`,
