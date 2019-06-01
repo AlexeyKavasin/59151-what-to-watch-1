@@ -16,19 +16,15 @@ class MovieList extends React.Component {
   }
 
   handleMouseOver(event, {id}) {
-    const {setActiveItem} = this.props;
     this.setState({
       activeCard: id
     });
-    setActiveItem({id});
   }
 
   handleMouseLeave() {
-    const {setActiveItem} = this.props;
     this.setState({
       activeCard: -1
     });
-    setActiveItem({id: -1});
   }
 
   render() {
@@ -55,7 +51,6 @@ class MovieList extends React.Component {
 
 MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired,
-  setActiveItem: PropTypes.func,
 };
 
 const filterFilms = (films, selectedGenre) => {
