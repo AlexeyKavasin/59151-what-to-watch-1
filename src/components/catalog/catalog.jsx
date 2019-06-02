@@ -5,17 +5,18 @@ import {connect} from "react-redux";
 import GenresList from "../genres-list/genreslist.jsx";
 import MovieList from "../movie-list/movielist.jsx";
 import {withGenres} from "../../hocs/with-genres/with-genres";
-
-const GenresListWithGenres = withGenres(GenresList);
+import {filterFilms} from "../../redux/selectors.js";
 
 class Catalog extends React.PureComponent {
   render() {
     const {films} = this.props;
+    const GenresListWithGenres = withGenres(GenresList);
+
     return (
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <GenresListWithGenres films={films}/>
-        <MovieList/>
+        <MovieList films={films}/>
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
         </div>
@@ -30,7 +31,7 @@ Catalog.propTypes = {
 
 const mapStateToProps = (state, ownProps) => ({
   ownProps,
-  films: state.films,
+  films: filterFilms(state.films, state.currentGenre)
 });
 
 const mapDispatchToProps = () => ({});

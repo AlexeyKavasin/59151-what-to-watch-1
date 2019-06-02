@@ -16,7 +16,7 @@ exports[`Movie list renders correctly 1`] = `
       <video
         height="175"
         muted={true}
-        poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        poster="https://placehold.it/280x175"
         width="280"
       >
         <source
@@ -47,7 +47,7 @@ exports[`Movie list renders correctly 1`] = `
       <video
         height="175"
         muted={true}
-        poster="img/bohemian-rhapsody.jpg"
+        poster="https://placehold.it/280x175"
         width="280"
       >
         <source
@@ -78,7 +78,7 @@ exports[`Movie list renders correctly 1`] = `
       <video
         height="175"
         muted={true}
-        poster="img/macbeth.jpg"
+        poster="https://placehold.it/280x175"
         width="280"
       >
         <source
@@ -109,7 +109,7 @@ exports[`Movie list renders correctly 1`] = `
       <video
         height="175"
         muted={true}
-        poster="img/Aviator.jpg"
+        poster="https://placehold.it/280x175"
         width="280"
       >
         <source
@@ -140,7 +140,7 @@ exports[`Movie list renders correctly 1`] = `
       <video
         height="175"
         muted={true}
-        poster="img/pulp-fiction.jpg"
+        poster="https://placehold.it/280x175"
         width="280"
       >
         <source

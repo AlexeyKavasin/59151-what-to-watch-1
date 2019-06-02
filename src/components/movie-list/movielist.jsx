@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {MovieCard} from "../movie-card/moviecard.jsx";
 import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
 import {connect} from "react-redux";
-import {ALL_GENRES} from "../../redux/types";
 
 class MovieList extends React.Component {
   constructor(props) {
@@ -34,7 +33,7 @@ class MovieList extends React.Component {
         {films.map((film, index) => {
           return <MovieCard
             name={film.name}
-            poster={film.poster}
+            poster={film.preview_image}
             trailer={film.trailer}
             genre={film.genre}
             key={index}
@@ -53,18 +52,10 @@ MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired,
 };
 
-const filterFilms = (films, selectedGenre) => {
-  if (selectedGenre === ALL_GENRES) {
-    return films;
-  }
-
-  return films.filter((film) => film.genre === selectedGenre);
-};
-
 const mapStateToProps = (state, ownProps) => ({
   ownProps,
   currentGenre: state.currentGenre,
-  films: filterFilms(state.films, state.currentGenre),
+  films: state.films
 });
 
 const mapDispatchToProps = () => ({});
