@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {GenresList} from './genreslist.jsx';
+import GenresList from './genreslist.jsx';
 import {initialState} from '../../redux/initialstate';
 
 describe(`GenresList snapshot tests`, () => {

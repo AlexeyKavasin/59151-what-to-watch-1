@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import {MovieCard} from "../movie-card/moviecard.jsx";
 import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
-import {connect} from "react-redux";
 
-class MovieList extends React.Component {
+export default class MovieList extends React.Component {
   render() {
     const {films, onMouseOver, onMouseLeave, activeCard} = this.props;
     return <React.Fragment>
@@ -29,19 +28,7 @@ class MovieList extends React.Component {
 
 MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired,
+  onMouseOver: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  activeCard: PropTypes.number.isRequired
 };
-
-const mapStateToProps = (state, ownProps) => ({
-  ownProps,
-  currentGenre: state.currentGenre,
-  films: state.films
-});
-
-const mapDispatchToProps = () => ({});
-
-export {MovieList};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MovieList);
