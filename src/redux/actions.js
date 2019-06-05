@@ -25,13 +25,13 @@ export function selectGenre(genre) {
   };
 }
 
-export function getFilmsByGenre(genre) {
+export function getFilmsByGenre(genre, films) {
   let filmsByGenre;
 
   if (genre === ALL_GENRES) {
-    filmsByGenre = initialState.films;
+    filmsByGenre = films;
   } else {
-    filmsByGenre = initialState.films.filter((film) => film.genre === genre);
+    filmsByGenre = films.filter((film) => film.genre === genre);
   }
 
   return {

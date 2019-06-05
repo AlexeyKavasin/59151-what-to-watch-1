@@ -4,19 +4,19 @@ import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
 import {connect} from "react-redux";
 import GenresList from "../genres-list/genreslist.jsx";
 import MovieList from "../movie-list/movielist.jsx";
-import {withGenres} from "../../hocs/with-genres/with-genres";
-import {filterFilms} from "../../redux/selectors.js";
+import {filterFilms, filterGenres} from "../../redux/selectors.js";
+import {withActiveCard} from "../../hocs/with-active-card/with-active-card";
+
+const MovieListWithActiveCard = withActiveCard(MovieList);
 
 class Catalog extends React.PureComponent {
   render() {
     const {films} = this.props;
-    const GenresListWithGenres = withGenres(GenresList);
-
     return (
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <GenresListWithGenres films={films}/>
-        <MovieList films={films}/>
+        <GenresList genres={filterGenres(films)}/>
+        <MovieListWithActiveCard films={films}/>
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
         </div>

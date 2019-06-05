@@ -7,3 +7,7 @@ export const filterFilms = (films, currentGenre) => {
 
   return films.filter((film) => film.genre === currentGenre);
 };
+
+export const filterGenres = (films) => {
+  return [`${ALL_GENRES}`, ...new Set(films.map((film) => film.genre))]
+};

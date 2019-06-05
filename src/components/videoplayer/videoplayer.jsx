@@ -43,7 +43,7 @@ export class VideoPlayer extends React.PureComponent {
 }
 
 VideoPlayer.propTypes = {
-  trailer: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
+  trailer: PropTypes.string,
+  poster: PropTypes.string,
   isPlaying: PropTypes.bool.isRequired
 };

@@ -8,8 +8,7 @@ it(`Movie list renders correctly`, () => {
     .create(<MovieList
       films={films}
       activeCard={-1}
-    />, {createNodeMock: () => ({addEventListener() {}, removeEventListener() {}})})
-    .toJSON();
+/>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
