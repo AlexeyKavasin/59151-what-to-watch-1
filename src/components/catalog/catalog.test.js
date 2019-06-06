@@ -8,8 +8,10 @@ jest.mock(`../movie-list/movielist.jsx`, () => () => `MovieList`);
 
 describe(`Catalog tests`, () => {
   it(`Catalog renders correctly`, () => {
+    const genres = [`All genres`, `Comedy`, `Documentary`];
+    const currentGenre = `All genres`;
     const tree = renderer
-      .create(<Catalog films={films}/>)
+      .create(<Catalog films={films} currentGenre={currentGenre} genres={genres}/>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

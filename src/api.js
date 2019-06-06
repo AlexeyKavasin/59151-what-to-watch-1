@@ -1,6 +1,7 @@
 import axios from 'axios';
+import {requireAuthorization} from './redux/reducer/actions';
 
-export const configureAPI = () => {
+export const configureAPI = (dispatch) => {
   const api = axios.create({
     baseURL: `https://es31-server.appspot.com/wtw`,
     timeout: 5000,
@@ -10,7 +11,7 @@ export const configureAPI = () => {
   const onSuccess = (response) => response;
   const onFail = (error) => {
     if (error.response.status === 403) {
-      // TODO dispatch authorization required
+      dispatch(requireAuthorization(true));
     }
     return error;
   };

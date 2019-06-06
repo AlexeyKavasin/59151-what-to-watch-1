@@ -4,9 +4,9 @@ import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
 import {connect} from "react-redux";
 import GenresList from "../genres-list/genreslist.jsx";
 import MovieList from "../movie-list/movielist.jsx";
-import {getCurrentGenre, getAllGenres, filterFilmsByGenre} from "../../redux/selectors.js";
+import {getCurrentGenre, getAllGenres, filterFilmsByGenre} from "../../redux/reducer/data/selectors.js";
 import {withActiveCard} from "../../hocs/with-active-card/with-active-card";
-import {selectGenre} from "../../redux/actions";
+import {selectGenre} from "../../redux/reducer/actions";
 
 const MovieListWithActiveCard = withActiveCard(MovieList);
 
@@ -27,14 +27,17 @@ class Catalog extends React.PureComponent {
 }
 
 Catalog.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired
+  currentGenre: PropTypes.string.isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onGenreChange: PropTypes.func
 };
 
 const mapStateToProps = (state, ownProps) => ({
   ownProps,
   currentGenre: getCurrentGenre(state),
-  genres: getAllGenres(state.films),
-  films: filterFilmsByGenre(state.films, state.currentGenre)
+  genres: getAllGenres(state),
+  films: filterFilmsByGenre(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
