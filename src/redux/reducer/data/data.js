@@ -1,8 +1,8 @@
 import {
   SELECT_GENRE,
   LOAD_FILMS
-} from "../actions";
-import {ALL_GENRES} from "../types";
+} from "../types";
+import {ALL_GENRES} from "../../../constants/constants";
 
 const initialState = {
   currentGenre: ALL_GENRES,

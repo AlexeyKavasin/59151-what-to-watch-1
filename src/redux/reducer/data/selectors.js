@@ -1,6 +1,6 @@
 import {createSelector} from "reselect";
 import {NameSpaces} from "../name-spaces.js";
-import {ALL_GENRES} from "../types";
+import {ALL_GENRES} from "../../../constants/constants";
 
 const NAME_SPACE = NameSpaces.DATA;
 

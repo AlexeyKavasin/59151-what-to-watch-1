@@ -1,9 +1,10 @@
-export const SELECT_GENRE = `SELECT_GENRE`;
-export const LOAD_FILMS = `LOAD_FILMS`;
-export const REQUIRED_AUTHORIZATION = `REQUIRED_AUTHORIZATION`;
-export const CHANGE_AUTHORIZATION_STATUS = `CHANGE_AUTHORIZATION_STATUS`;
-export const GET_AUTHORIZATION = `GET_AUTHORIZATION`;
-export const SAVE_USER_DATA = `SAVE_USER_DATA`;
+import {
+  SELECT_GENRE,
+  LOAD_FILMS,
+  REQUIRED_AUTHORIZATION,
+  CHANGE_AUTHORIZATION_STATUS,
+  SAVE_USER_DATA
+} from "./types";
 
 export const fetchFilms = () => (dispatch, getState, api) => {
   return api.get(`/films`).then((response) => {
@@ -53,6 +54,5 @@ export function saveUSerData(userData) {
   return {
     type: SAVE_USER_DATA,
     payload: userData
-  }
+  };
 }
-

@@ -1,7 +1,7 @@
 import {reducer} from "./user";
 import {mockedInitialState} from "../mockedInitialstate";
-import {REQUIRED_AUTHORIZATION} from "../actions";
-import {ALL_GENRES} from "../types";
+import {REQUIRED_AUTHORIZATION} from "../types";
+import {ALL_GENRES} from "../../../constants/constants";
 
 describe(`Reducer user tests`, () => {
   it(`Returns isAuthorizationRequired initial value`, () => {
