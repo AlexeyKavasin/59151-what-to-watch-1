@@ -13,8 +13,7 @@ const api = configureAPI((...args) => store.dispatch(...args));
 const store = createStore(
     combineReducers,
     compose(
-        applyMiddleware(thunk.withExtraArgument(api)),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        applyMiddleware(thunk.withExtraArgument(api))
     )
 );
 
