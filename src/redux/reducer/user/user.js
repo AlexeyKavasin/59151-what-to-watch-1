@@ -1,6 +1,6 @@
 import {
   REQUIRED_AUTHORIZATION
-} from "../actions";
+} from "../types";
 
 const initialState = {
   isAuthorizationRequired: false

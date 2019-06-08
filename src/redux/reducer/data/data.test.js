@@ -1,7 +1,8 @@
 import {reducer} from "./data";
 import {mockedInitialState} from "../mockedInitialstate";
-import {SELECT_GENRE, LOAD_FILMS, fetchFilms} from "../actions";
-import {ALL_GENRES} from "../types";
+import {SELECT_GENRE, LOAD_FILMS} from "../types";
+import {fetchFilms} from "../actions";
+import {ALL_GENRES} from "../../../constants/constants";
 import MockAdapter from "axios-mock-adapter";
 import {configureAPI} from "../../../api";
 import films from "../../../__fixtures__/films";

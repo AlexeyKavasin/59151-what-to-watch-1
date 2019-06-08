@@ -1,1 +1,3 @@
-export const ALL_GENRES = `All genres`;
+export const SELECT_GENRE = `SELECT_GENRE`;
+export const LOAD_FILMS = `LOAD_FILMS`;
+export const REQUIRED_AUTHORIZATION = `REQUIRED_AUTHORIZATION`;
