@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Catalog from "../catalog/catalog.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
-import {sendUserData} from "../../redux/reducer/actions";
+import {sendUserData, requireAuthorization} from "../../redux/reducer/actions";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -11,7 +11,9 @@ class App extends React.PureComponent {
     this.renderMainPage = this.renderMainPage.bind(this);
     this.renderSignInPage = this.renderSignInPage.bind(this);
   }
+
   renderMainPage() {
+    const {isAuthorized, userData, onSignInClick} = this.props;
     return <React.Fragment>
         <section className="movie-card">
           <div className="movie-card__bg">
@@ -30,9 +32,13 @@ class App extends React.PureComponent {
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
+              {isAuthorized && userData ? (
+                <div className="user-block__avatar">
+                  <img src={userData.avatar_url} alt={userData.name} width="63" height="63" />
+                </div>
+                ) : 
+                (<a href="#" className="user-block__link" onClick={onSignInClick}>Sign In</a>)
+              }
             </div>
           </header>
 
@@ -89,7 +95,7 @@ class App extends React.PureComponent {
   }
 
   renderSignInPage() {
-    return <SignIn onSubmit={this.props.onSignInFormSubmit}/>
+    return <SignIn/>
   }
 
   render() {
@@ -131,16 +137,28 @@ class App extends React.PureComponent {
 App.propTypes = {
   children: PropTypes.node,
   isAuthorizationRequired: PropTypes.bool.isRequired,
-  isAuthorized: PropTypes.bool.isRequired
+  isAuthorized: PropTypes.bool.isRequired,
+  userData: PropTypes.shape({
+    id: PropTypes.number,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatar_url: PropTypes.string
+  })
 };
 
 const mapStateToProps = (state, ownProps) => ({
   ownProps,
   isAuthorizationRequired: state[`USER`].isAuthorizationRequired,
-  isAuthorized: state[`USER`].isAuthorized
+  isAuthorized: state[`USER`].isAuthorized,
+  userData: state[`USER`].userData
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  onSignInClick: (e) => {
+    e.preventDefault();
+    dispatch(requireAuthorization(true));
+  }
+});
 
 export {App};
 

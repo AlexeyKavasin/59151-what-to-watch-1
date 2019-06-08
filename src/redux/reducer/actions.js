@@ -11,7 +11,7 @@ export const fetchFilms = () => (dispatch, getState, api) => {
   });
 };
 
-export const sendUserData = ({email, password}) => (dispatch, getState, api) => {
+export const sendUserData = (email, password) => (dispatch, getState, api) => {
   return api.post(`/login`, {email, password}).then((response) => {
     if (response.status === 200) {
       dispatch(changeAuthorizationStatus(true));
@@ -23,14 +23,14 @@ export const sendUserData = ({email, password}) => (dispatch, getState, api) => 
 
 export function loadFilms(fetchedFilms) {
   return {
-    type: `LOAD_FILMS`,
+    type: LOAD_FILMS,
     payload: fetchedFilms
   };
 }
 
 export function selectGenre(genre) {
   return {
-    type: `SELECT_GENRE`,
+    type: SELECT_GENRE,
     payload: genre
   };
 }
