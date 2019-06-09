@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export const propTypes = {
   name: PropTypes.string.isRequired,
   onMouseOver: PropTypes.func,
-  poster: PropTypes.string.isRequired,
+  poster: PropTypes.string,
   id: PropTypes.number.isRequired,
   genre: PropTypes.string
 };

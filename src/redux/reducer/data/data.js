@@ -1,8 +1,13 @@
-import {initialState} from "./initialstate";
 import {
   SELECT_GENRE,
-  GET_FILMS_BY_GENRE
-} from "./actions";
+  LOAD_FILMS
+} from "../types";
+import {ALL_GENRES} from "../../../constants/constants";
+
+const initialState = {
+  currentGenre: ALL_GENRES,
+  films: []
+};
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -11,7 +16,7 @@ export const reducer = (state = initialState, action) => {
         currentGenre: action.payload
       });
 
-    case GET_FILMS_BY_GENRE:
+    case LOAD_FILMS:
       return Object.assign({}, state, {
         films: action.payload
       });

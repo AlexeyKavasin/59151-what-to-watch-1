@@ -2,46 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import {MovieCard} from "../movie-card/moviecard.jsx";
 import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
-import {connect} from "react-redux";
-import {ALL_GENRES} from "../../redux/types";
 
-class MovieList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeCard: -1
-    };
-    this.handleMouseOver = this.handleMouseOver.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
-  }
-
-  handleMouseOver(event, {id}) {
-    this.setState({
-      activeCard: id
-    });
-  }
-
-  handleMouseLeave() {
-    this.setState({
-      activeCard: -1
-    });
-  }
-
+export default class MovieList extends React.Component {
   render() {
-    const {films} = this.props;
+    const {films, onMouseOver, onMouseLeave, activeCard} = this.props;
     return <React.Fragment>
       <div className="catalog__movies-list">
         {films.map((film, index) => {
           return <MovieCard
             name={film.name}
-            poster={film.poster}
-            trailer={film.trailer}
+            poster={film.preview_image}
+            trailer={film.preview_video_link}
             genre={film.genre}
             key={index}
             id={film.id}
-            isPlaying={this.state.activeCard === film.id}
-            onMouseOver={this.handleMouseOver}
-            onMouseLeave={this.handleMouseLeave}
+            isPlaying={activeCard === film.id}
+            onMouseOver={onMouseOver}
+            onMouseLeave={onMouseLeave}
           />;
         })}
       </div>
@@ -51,27 +28,7 @@ class MovieList extends React.Component {
 
 MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired,
+  onMouseOver: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  activeCard: PropTypes.number.isRequired
 };
-
-const filterFilms = (films, selectedGenre) => {
-  if (selectedGenre === ALL_GENRES) {
-    return films;
-  }
-
-  return films.filter((film) => film.genre === selectedGenre);
-};
-
-const mapStateToProps = (state, ownProps) => ({
-  ownProps,
-  currentGenre: state.currentGenre,
-  films: filterFilms(state.films, state.currentGenre),
-});
-
-const mapDispatchToProps = () => ({});
-
-export {MovieList};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MovieList);

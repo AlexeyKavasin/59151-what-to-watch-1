@@ -20,7 +20,7 @@ export class VideoPlayer extends React.PureComponent {
         width="280"
         height="175"
         muted>
-        <source src={trailer}></source>
+        <source src={trailer} />
       </video>
     </React.Fragment>;
   }
@@ -43,7 +43,7 @@ export class VideoPlayer extends React.PureComponent {
 }
 
 VideoPlayer.propTypes = {
-  trailer: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
+  trailer: PropTypes.string,
+  poster: PropTypes.string,
   isPlaying: PropTypes.bool.isRequired
 };
