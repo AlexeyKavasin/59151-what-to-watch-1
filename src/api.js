@@ -3,7 +3,7 @@ import {requireAuthorization} from './redux/reducer/actions';
 
 export const configureAPI = (dispatch) => {
   const api = axios.create({
-    baseURL: `https://es31-server.appspot.com/wtw`,
+    baseURL: BASE_URL,
     timeout: 5000,
     withCredentials: true
   });

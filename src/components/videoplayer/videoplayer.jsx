@@ -20,7 +20,7 @@ export class VideoPlayer extends React.PureComponent {
         width="280"
         height="175"
         muted>
-        <source src={trailer}></source>
+        <source src={trailer} />
       </video>
     </React.Fragment>;
   }

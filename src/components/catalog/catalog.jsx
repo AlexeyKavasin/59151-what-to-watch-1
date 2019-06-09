@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
 import {connect} from "react-redux";
+import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
 import GenresList from "../genres-list/genreslist.jsx";
 import MovieList from "../movie-list/movielist.jsx";
 import {getCurrentGenre, getAllGenres, filterFilmsByGenre} from "../../redux/reducer/data/selectors.js";
@@ -41,9 +41,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGenreChange: (genre) => {
-    dispatch(selectGenre(genre));
-  },
+  onGenreChange: selectGenre,
 });
 
 export {Catalog};

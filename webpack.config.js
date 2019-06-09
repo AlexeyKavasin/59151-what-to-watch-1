@@ -1,4 +1,8 @@
 const path = require(`path`);
+const { DefinePlugin } = require('webpack');
+
+const IS_DEV = JSON.stringify((process.env.NODE_ENV || 'development') === 'development');
+const BASE_URL = JSON.stringify(`https://es31-server.appspot.com/wtw`);
 
 module.exports = {
   entry: `./src/index.js`,
@@ -22,5 +26,11 @@ module.exports = {
       }
     ],
   },
-  devtool: `source-map`
+  devtool: `source-map`,
+  plugins: [
+    new DefinePlugin({
+      IS_DEV,
+      BASE_URL,
+    }),
+  ],
 };
