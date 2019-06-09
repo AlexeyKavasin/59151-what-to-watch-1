@@ -10,7 +10,7 @@ export const configureAPI = (dispatch) => {
 
   const onSuccess = (response) => response;
   const onFail = (error) => {
-    if (error.response.status === 403) {
+    if (error.response.status === 401) {
       dispatch(requireAuthorization(true));
     }
     return error;

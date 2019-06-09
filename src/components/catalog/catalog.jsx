@@ -41,7 +41,9 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGenreChange: selectGenre,
+  onGenreChange: (genre) => {
+    dispatch(selectGenre(genre));
+  }
 });
 
 export {Catalog};
