@@ -1,20 +1,20 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
-import {App} from './app.jsx';
+import {MainPage} from './main-page.jsx';
 
 jest.mock(`../catalog/catalog.jsx`, () => () => `Catalog`);
 
-describe(`App snapshot tests`, () => {
-  it(`App renders correctly`, () => {
+describe(`MainPage snapshot tests`, () => {
+  it(`MainPage renders correctly`, () => {
+    const mock = jest.fn();
     const tree = renderer
       .create(
           <BrowserRouter>
-            <App
-              isAuthorizationRequired={false}
-              isAuthorized={false}
-              onSignInClick={jest.fn()}
-            />
+            <MainPage 
+                isAuthorizationRequired={false}
+                isAuthorized={false}
+                onSignInClick={mock}/>
           </BrowserRouter>)
       .toJSON();
 

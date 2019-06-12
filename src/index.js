@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import {createStore, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 import {Provider} from "react-redux";
+import {BrowserRouter} from 'react-router-dom';
+
 import combinedReducers from "./redux/reducer/index";
 import {configureAPI} from "./api.js";
 import App from "./components/app/app.jsx";
@@ -24,7 +26,9 @@ const init = () => {
 
   ReactDOM.render(
       <Provider store={store}>
-        <App/>
+        <BrowserRouter>
+          <App/>
+        </BrowserRouter>
       </Provider>,
       document.querySelector(`#root`)
   );
