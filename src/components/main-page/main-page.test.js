@@ -11,10 +11,10 @@ describe(`MainPage snapshot tests`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
-            <MainPage 
-                isAuthorizationRequired={false}
-                isAuthorized={false}
-                onSignInClick={mock}/>
+            <MainPage
+              isAuthorizationRequired={false}
+              isAuthorized={false}
+              onSignInClick={mock}/>
           </BrowserRouter>)
       .toJSON();
 

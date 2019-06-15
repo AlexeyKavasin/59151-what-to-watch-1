@@ -11,7 +11,7 @@ export const configureAPI = (dispatch) => {
   const onSuccess = (response) => response;
   const onFail = (error) => {
     if (error.response.status === 401) {
-      history.pushState(null, null, '/login');
+      history.pushState(null, null, `/login`);
       dispatch(requireAuthorization(true));
     }
     return error;

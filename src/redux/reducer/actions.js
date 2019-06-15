@@ -15,7 +15,7 @@ export const fetchFilms = () => (dispatch, getState, api) => {
 export const sendUserData = (email, password) => (dispatch, getState, api) => {
   return api.post(`/login`, {email, password}).then((response) => {
     if (response.status === 200) {
-      history.pushState(null, null, '/');
+      history.pushState(null, null, `/`);
       dispatch(changeAuthorizationStatus(true));
       dispatch(requireAuthorization(false));
       dispatch(saveUSerData(response.data));
