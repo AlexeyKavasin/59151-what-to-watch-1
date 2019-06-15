@@ -41,6 +41,7 @@ class App extends React.PureComponent {
         <Route path="/" exact component={() => <MainPage {...this.props}/>}/>
         <Route path="/login" component={() => <SignIn/>}/>
         <Route path="/favorites" component={withPrivateRoute(Favorites)}/>
+        <Route component={() => <h1>404 - Not found</h1>}/>
       </Switch>
     </React.Fragment>;
   }

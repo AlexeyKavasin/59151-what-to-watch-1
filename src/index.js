@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {createStore, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 import {Provider} from "react-redux";
-import {BrowserRouter} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
 
 import combinedReducers from "./redux/reducer/index";
 import {configureAPI} from "./api.js";
@@ -26,9 +26,9 @@ const init = () => {
 
   ReactDOM.render(
       <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
           <App/>
-        </BrowserRouter>
+        </HashRouter>
       </Provider>,
       document.querySelector(`#root`)
   );
