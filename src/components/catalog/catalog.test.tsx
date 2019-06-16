@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Catalog} from './catalog.jsx';
+import {Catalog} from './catalog.js';
 import films from "../../__fixtures__/films";
 
-jest.mock(`../genres-list/genreslist.jsx`, () => () => `GenresList`);
-jest.mock(`../movie-list/movielist.jsx`, () => () => `MovieList`);
+jest.mock(`../genres-list/genreslist.tsx`, () => () => `GenresList`);
+jest.mock(`../movie-list/movielist.tsx`, () => () => `MovieList`);
 
 describe(`Catalog tests`, () => {
   it(`Catalog renders correctly`, () => {
