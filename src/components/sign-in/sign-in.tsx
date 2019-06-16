@@ -1,17 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 import {sendUserData} from "../../redux/reducer/actions";
+import {ISignIn, ISignInState} from "../../interfaces";
 
-class SignIn extends React.PureComponent {
+class SignIn extends React.PureComponent<ISignIn, ISignInState> {
   constructor(props) {
     super(props);
     this.state = {
       email: null,
       password: null,
-      validEmail: false,
-      validPassword: false
+      isValidEmail: false,
+      isValidPassword: false
     };
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
@@ -24,14 +24,14 @@ class SignIn extends React.PureComponent {
   onEmailChange(value) {
     this.setState({
       email: value,
-      validEmail: this.isValid(value)
+      isValidEmail: this.isValid(value)
     });
   }
 
   onPasswordChange(value) {
     this.setState({
       password: value,
-      validPassword: this.isValid(value)
+      isValidPassword: this.isValid(value)
     });
   }
 
@@ -85,17 +85,17 @@ class SignIn extends React.PureComponent {
         <div className="sign-in user-page__content">
           <form action="#" className="sign-in__form" onSubmit={(e) => {
             e.preventDefault();
-            if (this.state.validEmail && this.state.validPassword) {
+            if (this.state.isValidEmail && this.state.isValidPassword) {
               authorizeUser(this.state.email, this.state.password);
             }
           }}>
             <div className="sign-in__fields">
-              <div className={`sign-in__field ${this.state.validEmail ? `` : `sign-in__field--error`}`}>
+              <div className={`sign-in__field ${this.state.isValidEmail ? `` : `sign-in__field--error`}`}>
                 <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email"
                   onChange={(e) => this.onEmailChange(e.target.value)} />
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
-              <div className={`sign-in__field ${this.state.validPassword ? `` : `sign-in__field--error`}`}>
+              <div className={`sign-in__field ${this.state.isValidPassword ? `` : `sign-in__field--error`}`}>
                 <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" autoComplete="Current password" onChange={(e) => this.onPasswordChange(e.target.value)}/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
               </div>
@@ -123,10 +123,6 @@ class SignIn extends React.PureComponent {
     </React.Fragment>;
   }
 }
-
-SignIn.propTypes = {
-  authorizeUser: PropTypes.func.isRequired,
-};
 
 const mapDispatchToProps = (dispatch) => ({
   authorizeUser: (email, password) => {

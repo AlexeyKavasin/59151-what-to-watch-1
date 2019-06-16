@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {connect} from "react-redux";
 import {Switch, Route} from 'react-router-dom';
-import SignIn from "../sign-in/sign-in.jsx";
-import {MainPage} from "../main-page/main-page.jsx";
-import {Favorites} from "../favorites/favorites.jsx";
+import SignIn from "../sign-in/sign-in";
+import {MainPage} from "../main-page/main-page";
+import {Favorites} from "../favorites/favorites";
 import {requireAuthorization} from "../../redux/reducer/actions";
 import {withPrivateRoute} from "../../hocs/with-private-route/with-private-route";
+import {IApp} from "../../interfaces";
 
-class App extends React.PureComponent {
+class App extends React.PureComponent<IApp, null> {
   render() {
     return <React.Fragment>
       <div className="visually-hidden">
@@ -46,19 +46,6 @@ class App extends React.PureComponent {
     </React.Fragment>;
   }
 }
-
-App.propTypes = {
-  children: PropTypes.node,
-  isAuthorizationRequired: PropTypes.bool.isRequired,
-  isAuthorized: PropTypes.bool.isRequired,
-  userData: PropTypes.shape({
-    id: PropTypes.number,
-    email: PropTypes.string,
-    name: PropTypes.string,
-    avatarUrl: PropTypes.string
-  }),
-  onSignInClick: PropTypes.func.isRequired
-};
 
 const mapStateToProps = (state, ownProps) => ({
   ownProps,

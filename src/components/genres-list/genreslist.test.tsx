@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import GenresList from './genreslist';
 import {mockedInitialState} from '../../redux/reducer/mockedInitialstate';
@@ -9,7 +9,7 @@ describe(`GenresList snapshot tests`, () => {
     const films = mockedInitialState.films;
     const currentGenre = mockedInitialState.currentGenre;
     const tree = renderer
-      .create(<GenresList films={films} currentGenre={currentGenre} genres={genres}/>)
+      .create(<GenresList currentGenre={currentGenre} genres={genres}/>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

@@ -1,16 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {connect} from "react-redux";
-import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
-import GenresList from "../genres-list/genreslist.jsx";
-import MovieList from "../movie-list/movielist.jsx";
+import GenresList from "../genres-list/genreslist";
+import MovieList from "../movie-list/movielist";
 import {getCurrentGenre, getAllGenres, filterFilmsByGenre} from "../../redux/reducer/data/selectors.js";
 import {withActiveCard} from "../../hocs/with-active-card/with-active-card";
 import {selectGenre} from "../../redux/reducer/actions";
+import {ICatalog} from "../../interfaces";
 
 const MovieListWithActiveCard = withActiveCard(MovieList);
 
-class Catalog extends React.PureComponent {
+class Catalog extends React.PureComponent<ICatalog, null> {
   render() {
     const {films, genres, onGenreChange, currentGenre} = this.props;
     return (
@@ -25,13 +24,6 @@ class Catalog extends React.PureComponent {
     );
   }
 }
-
-Catalog.propTypes = {
-  currentGenre: PropTypes.string.isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onGenreChange: PropTypes.func
-};
 
 const mapStateToProps = (state, ownProps) => ({
   ownProps,

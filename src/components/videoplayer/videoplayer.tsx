@@ -1,7 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {IVideoPlayer} from "../../interfaces";
 
-export class VideoPlayer extends React.PureComponent {
+export class VideoPlayer extends React.PureComponent<IVideoPlayer, null> {
+  private _videoRef: React.RefObject<HTMLVideoElement>;
+  private playerTimeout: null | NodeJS.Timer;
+  private playerDelay: number;
+
   constructor(props) {
     super(props);
 
@@ -41,9 +45,3 @@ export class VideoPlayer extends React.PureComponent {
     }
   }
 }
-
-VideoPlayer.propTypes = {
-  trailer: PropTypes.string,
-  poster: PropTypes.string,
-  isPlaying: PropTypes.bool.isRequired
-};

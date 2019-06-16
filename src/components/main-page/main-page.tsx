@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {Link} from 'react-router-dom';
 import Catalog from "../catalog/catalog";
+import {IApp} from "../../interfaces";
 
-export class MainPage extends React.PureComponent {
+export class MainPage extends React.PureComponent<IApp, null> {
   render() {
     const {isAuthorized, userData, onSignInClick} = this.props;
     return <React.Fragment>
@@ -86,16 +86,3 @@ export class MainPage extends React.PureComponent {
     </React.Fragment>;
   }
 }
-
-MainPage.propTypes = {
-  children: PropTypes.node,
-  isAuthorizationRequired: PropTypes.bool.isRequired,
-  isAuthorized: PropTypes.bool.isRequired,
-  userData: PropTypes.shape({
-    id: PropTypes.number,
-    email: PropTypes.string,
-    name: PropTypes.string,
-    avatarUrl: PropTypes.string
-  }),
-  onSignInClick: PropTypes.func.isRequired
-};

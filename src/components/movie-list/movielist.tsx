@@ -1,9 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {MovieCard} from "../movie-card/moviecard.jsx";
-import {propTypes as movieCardPropTypes} from "../movie-card/moviecard.props";
+import * as React from "react";
+import {MovieCard} from "../movie-card/moviecard";
+import {IMovieList} from "../../interfaces";
 
-export default class MovieList extends React.Component {
+export default class MovieList extends React.Component<IMovieList, null> {
   render() {
     const {films, onMouseOver, onMouseLeave, activeCard} = this.props;
     return <React.Fragment>
@@ -25,10 +24,3 @@ export default class MovieList extends React.Component {
     </React.Fragment>;
   }
 }
-
-MovieList.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape(movieCardPropTypes)).isRequired,
-  onMouseOver: PropTypes.func,
-  onMouseLeave: PropTypes.func,
-  activeCard: PropTypes.number.isRequired
-};

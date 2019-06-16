@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {IGenresList} from "../../interfaces";
 
-export default class GenresList extends React.PureComponent {
+export default class GenresList extends React.PureComponent<IGenresList, null> {
   render() {
     const {genres, currentGenre, onGenreChange} = this.props;
     return <React.Fragment>
@@ -21,9 +21,3 @@ export default class GenresList extends React.PureComponent {
     </React.Fragment>;
   }
 }
-
-GenresList.propTypes = {
-  currentGenre: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onGenreChange: PropTypes.func
-};

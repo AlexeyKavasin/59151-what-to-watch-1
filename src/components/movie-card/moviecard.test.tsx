@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {MovieCard} from './moviecard.jsx';
-import {VideoPlayer} from '../videoplayer/videoplayer.jsx';
+import {MovieCard} from './moviecard.js';
+import {VideoPlayer} from '../videoplayer/videoplayer.js';
 import films from '../../__fixtures__/films.js';
 
 it(`Movie card renders correctly`, () => {

@@ -1,11 +1,15 @@
-import React from "react";
+import * as React from "react";
 import {Redirect} from "react-router-dom";
-import PropTypes from "prop-types";
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
+import {Subtract} from "utility-types";
 import {getAuthorizationStatus} from "../../redux/reducer/user/selectors";
+import {IWithPrivateRoute} from "../../interfaces";
 
 export const withPrivateRoute = (Component) => {
-  class WithPrivateRoute extends React.Component {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, IWithPrivateRoute>;
+
+  class WithPrivateRoute extends React.Component<T, null> {
     constructor(props) {
       super(props);
     }
@@ -18,10 +22,6 @@ export const withPrivateRoute = (Component) => {
       return <Component {...this.props}/>;
     }
   }
-
-  WithPrivateRoute.propTypes = {
-    isAuthorizationRequired: PropTypes.bool.isRequired
-  };
 
   const mapStateToProps = (state) => ({
     isAuthorizationRequired: getAuthorizationStatus(state),
