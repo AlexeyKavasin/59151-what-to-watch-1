@@ -12,7 +12,6 @@ export default class MovieList extends React.Component<IMovieList, null> {
             name={film.name}
             poster={film.preview_image}
             trailer={film.preview_video_link}
-            genre={film.genre}
             key={index}
             id={film.id}
             isPlaying={activeCard === film.id}

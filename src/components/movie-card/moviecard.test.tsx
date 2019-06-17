@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {MovieCard} from './moviecard.js';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import {MovieCard} from './moviecard';
 import {VideoPlayer} from '../videoplayer/videoplayer.js';
 import films from '../../__fixtures__/films.js';
 

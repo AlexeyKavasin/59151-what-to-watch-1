@@ -64,14 +64,14 @@ export interface IWithActiveCardState {
     activeCard: number
 }
 
-interface userData {
+export interface userData {
     id: number,
     email: string,
     name: string,
     avatarUrl: string
 }
 
-interface filmData {
+export interface filmData {
     name: string,
     poster: string,
     id: number,

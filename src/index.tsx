@@ -10,7 +10,7 @@ import {configureAPI} from "./api.js";
 import App from "./components/app/app";
 import {fetchFilms} from "./redux/reducer/actions.js";
 
-const api = configureAPI((...args) => store.dispatch(...args));
+const api = configureAPI();
 
 const middlewares = [
   thunk.withExtraArgument(api)
