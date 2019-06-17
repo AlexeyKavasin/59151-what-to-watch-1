@@ -1,7 +1,12 @@
-import React from "react";
+import * as React from "react";
+import {Subtract} from "utility-types";
+import {IWithActiveCard, IWithActiveCardState} from "../../interfaces";
 
 export const withActiveCard = (Component) => {
-  class WithActiveCard extends React.Component {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, IWithActiveCard>;
+
+  class WithActiveCard extends React.Component<T, IWithActiveCardState> {
     constructor(props) {
       super(props);
       this.state = {
@@ -11,7 +16,7 @@ export const withActiveCard = (Component) => {
       this.handleMouseLeave = this.handleMouseLeave.bind(this);
     }
 
-    handleMouseOver(event, {id}) {
+    handleMouseOver(event, id) {
       this.setState({
         activeCard: id
       });

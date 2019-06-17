@@ -1,16 +1,16 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {BrowserRouter} from 'react-router-dom';
-import {SignIn} from './sign-in.jsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import {HashRouter} from 'react-router-dom';
+import {SignIn} from './sign-in';
 
 describe(`SignIn snapshot tests`, () => {
   it(`SignIn renders correctly`, () => {
     const mock = jest.fn();
     const tree = renderer
       .create(
-          <BrowserRouter>
+          <HashRouter>
             <SignIn authorizeUser={mock}/>
-          </BrowserRouter>)
+          </HashRouter>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

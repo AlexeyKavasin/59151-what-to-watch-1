@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {VideoPlayer} from './videoplayer.jsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import {VideoPlayer} from './videoplayer';
 import films from '../../__fixtures__/films.js';
 
 it(`Videoplayer renders correctly`, () => {

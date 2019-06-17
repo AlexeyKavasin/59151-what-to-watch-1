@@ -1,8 +1,8 @@
-import React from "react";
-import {VideoPlayer} from "../videoplayer/videoplayer.jsx";
-import {propTypes, defaultProps} from "./moviecard.props";
+import * as React from "react";
+import {VideoPlayer} from "../videoplayer/videoplayer";
+import {IMovieCard} from "../../interfaces";
 
-export class MovieCard extends React.PureComponent {
+export class MovieCard extends React.PureComponent<IMovieCard, null> {
   constructor(props) {
     super(props);
     this.handleMouseOver = this.handleMouseOver.bind(this);
@@ -11,7 +11,7 @@ export class MovieCard extends React.PureComponent {
 
   handleMouseOver(event) {
     const {onMouseOver, id} = this.props;
-    onMouseOver(event, {id});
+    onMouseOver(event, id);
   }
 
   handleMouseLeave() {
@@ -22,7 +22,7 @@ export class MovieCard extends React.PureComponent {
   render() {
     const {name, poster, trailer, id, isPlaying} = this.props;
     return <React.Fragment>
-      <article className="small-movie-card catalog__movies-card" id={id} onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>
+      <article className="small-movie-card catalog__movies-card" data-id={id} onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>
         <div className="small-movie-card__image">
           <VideoPlayer trailer={trailer} poster={poster} isPlaying={isPlaying}/>
         </div>
@@ -33,6 +33,3 @@ export class MovieCard extends React.PureComponent {
     </React.Fragment>;
   }
 }
-
-MovieCard.propTypes = propTypes;
-MovieCard.defaultProps = defaultProps;

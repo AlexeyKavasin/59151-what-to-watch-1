@@ -1,10 +1,10 @@
-import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import {MovieCard} from '../movie-card/moviecard.jsx';
-import {VideoPlayer} from '../videoplayer/videoplayer.jsx';
+import * as React from 'react';
+import {configure, shallow} from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
+import {MovieCard} from './moviecard';
+import {VideoPlayer} from '../videoplayer/videoplayer';
 
-Enzyme.configure({adapter: new Adapter()});
+configure({adapter: new Adapter()});
 
 const mock = {
   id: 0,
@@ -17,12 +17,14 @@ const mock = {
 it(`Mouse over card returns correct card id`, () => {
   const {id, name, poster, trailer, isPlaying} = mock;
   const handleMouseOver = jest.fn();
+  const handleMouseLeave = jest.fn();
   const movieCard = shallow(<MovieCard
     name={name}
     poster={poster}
     trailer={trailer}
     isPlaying={isPlaying}
     onMouseOver={handleMouseOver}
+    onMouseLeave={handleMouseLeave}
     id={id}>
     <VideoPlayer trailer={trailer} poster={poster} isPlaying={isPlaying}/>
   </MovieCard>);
