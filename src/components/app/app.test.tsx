@@ -3,14 +3,7 @@ import * as renderer from 'react-test-renderer';
 import {HashRouter} from 'react-router-dom';
 import {App} from './app';
 
-jest.mock(`../catalog/catalog.tsx`, () => () => `Catalog`);
-
-const mockedUserData = {
-  id: 0,
-  email: 'qwerty@qwerty.ru',
-  name: 'qwerty',
-  avatarUrl: 'qwerty.jpg'
-}
+jest.mock(`../catalog/catalog`, () => () => `Catalog`);
 
 describe(`App snapshot tests`, () => {
   it(`App renders correctly`, () => {
@@ -21,7 +14,7 @@ describe(`App snapshot tests`, () => {
               isAuthorizationRequired={false}
               isAuthorized={false}
               onSignInClick={jest.fn()}
-              userData={mockedUserData}
+              userData={null}
             />
           </HashRouter>)
       .toJSON();

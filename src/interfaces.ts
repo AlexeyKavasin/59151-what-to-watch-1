@@ -1,7 +1,7 @@
 export interface IApp {
     isAuthorizationRequired: boolean,
     isAuthorized: boolean,
-    userData: userData
+    userData: null | userData
     onSignInClick: () => void
 }
 
