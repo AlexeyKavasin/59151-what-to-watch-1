@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Catalog tests Catalog renders correctly 1`] = `
+<section
+  className="catalog"
+>
+  <h2
+    className="catalog__title visually-hidden"
+  >
+    Catalog
+  </h2>
+  <GenresList
+    currentGenre="All genres"
+    genres={
+      Array [
+        "All genres",
+        "Comedy",
+        "Documentary",
+      ]
+    }
+    onGenreChange={[Function]}
+  />
+  <MovieList
+    activeCard={-1}
+    films={
+      Array [
+        Object {
+          "genre": "Comedy",
+          "id": 0,
+          "isPlaying": false,
+          "name": "Fantastic Beasts",
+          "poster": "img/fantastic-beasts-the-crimes-of-grindelwald.jpg",
+          "trailer": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        },
+        Object {
+          "genre": "Comedy",
+          "id": 1,
+          "isPlaying": false,
+          "name": "Bohemian Rhapsody",
+          "poster": "img/bohemian-rhapsody.jpg",
+          "trailer": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        },
+        Object {
+          "genre": "Comedy",
+          "id": 2,
+          "isPlaying": false,
+          "name": "Macbeth",
+          "poster": "img/macbeth.jpg",
+          "trailer": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        },
+        Object {
+          "genre": "Comedy",
+          "id": 3,
+          "isPlaying": false,
+          "name": "Aviator",
+          "poster": "img/Aviator.jpg",
+          "trailer": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        },
+        Object {
+          "genre": "Documentary",
+          "id": 4,
+          "isPlaying": false,
+          "name": "Pulp Fiction",
+          "poster": "img/pulp-fiction.jpg",
+          "trailer": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        },
+      ]
+    }
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+  />
+  <div
+    className="catalog__more"
+  >
+    <button
+      className="catalog__button"
+      type="button"
+    >
+      Show more
+    </button>
+  </div>
+</section>
+`;

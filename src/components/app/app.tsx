@@ -2,7 +2,7 @@ import * as React from "react";
 import {connect} from "react-redux";
 import {Switch, Route} from 'react-router-dom';
 import SignIn from "../sign-in/sign-in";
-import {MainPage} from "../main-page/main-page";
+import MainPage from "../main-page/main-page";
 import {Favorites} from "../favorites/favorites";
 import {requireAuthorization} from "../../redux/reducer/actions";
 import {withPrivateRoute} from "../../hocs/with-private-route/with-private-route";
