@@ -3,7 +3,11 @@ import * as renderer from 'react-test-renderer';
 import {HashRouter} from 'react-router-dom';
 import {App} from './app';
 
-jest.mock(`../catalog/catalog`, () => () => `Catalog`);
+jest.mock(`../main-page/main-page`, () => {
+  return {
+    'default': 'MainPage'
+  }
+});
 
 describe(`App snapshot tests`, () => {
   it(`App renders correctly`, () => {

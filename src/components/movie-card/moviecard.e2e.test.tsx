@@ -33,5 +33,5 @@ it(`Mouse over card returns correct card id`, () => {
   expect(wrapper.length).toEqual(1);
 
   wrapper.simulate(`mouseover`, {});
-  expect(handleMouseOver).toHaveBeenCalledWith(expect.any(Object), {id});
+  expect(handleMouseOver).toHaveBeenCalledWith(expect.any(Object), id);
 });

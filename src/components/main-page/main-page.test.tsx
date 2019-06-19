@@ -1,9 +1,13 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import {HashRouter} from 'react-router-dom';
-import {MainPage} from './main-page';
+import MainPage from './main-page';
 
-jest.mock(`../catalog/catalog`, () => () => `Catalog`);
+jest.mock(`../catalog/catalog`, () => {
+  return {
+    'default': 'Catalog'
+  }
+});
 
 describe(`MainPage snapshot tests`, () => {
   it(`MainPage renders correctly`, () => {

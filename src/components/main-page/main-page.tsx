@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import Catalog from "../catalog/catalog";
 import {IApp} from "../../interfaces";
 
-export class MainPage extends React.PureComponent<IApp, null> {
+export default class MainPage extends React.PureComponent<IApp, null> {
   render() {
     const {isAuthorized, userData, onSignInClick} = this.props;
     return <React.Fragment>

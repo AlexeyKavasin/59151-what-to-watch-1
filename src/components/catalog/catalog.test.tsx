@@ -3,8 +3,17 @@ import * as renderer from 'react-test-renderer';
 import {Catalog} from './catalog';
 import films from '../../__fixtures__/films';
 
-jest.mock(`../genres-list/genreslist`, () => () => `GenresList`);
-jest.mock(`../movie-list/movielist`, () => () => `MovieList`);
+jest.mock(`../genres-list/genreslist`, () => {
+  return {
+    'default': 'GenresList'
+  }
+});
+
+jest.mock(`../movie-list/movielist`, () => {
+  return {
+    'default': 'MovieList'
+  }
+});
 
 describe(`Catalog tests`, () => {
   it(`Catalog renders correctly`, () => {

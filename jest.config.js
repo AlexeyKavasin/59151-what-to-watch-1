@@ -12,4 +12,7 @@ module.exports = {
       `json`,
       `node`
     ],
+    "globals": {
+      "BASE_URL": "https://es31-server.appspot.com/wtw"
+    }
 };

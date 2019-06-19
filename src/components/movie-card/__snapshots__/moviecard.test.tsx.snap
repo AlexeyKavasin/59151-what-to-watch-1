@@ -3,7 +3,7 @@
 exports[`Movie card renders correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  id={0}
+  data-id={0}
   onMouseLeave={[Function]}
   onMouseOver={[Function]}
 >
