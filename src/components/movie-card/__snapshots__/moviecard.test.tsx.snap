@@ -7,8 +7,10 @@ exports[`Movie card renders correctly 1`] = `
   onMouseLeave={[Function]}
   onMouseOver={[Function]}
 >
-  <div
+  <a
     className="small-movie-card__image"
+    href="#/film/0"
+    onClick={[Function]}
   >
     <video
       height="175"
@@ -20,13 +22,14 @@ exports[`Movie card renders correctly 1`] = `
         src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
       />
     </video>
-  </div>
+  </a>
   <h3
     className="small-movie-card__title"
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="#/film/0"
+      onClick={[Function]}
     >
       Fantastic Beasts
     </a>

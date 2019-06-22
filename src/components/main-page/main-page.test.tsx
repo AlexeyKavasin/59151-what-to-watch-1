@@ -19,7 +19,9 @@ describe(`MainPage snapshot tests`, () => {
               isAuthorizationRequired={false}
               isAuthorized={false}
               onSignInClick={mock}
-              userData={null}/>
+              userData={null}
+              films={null}
+              />
           </HashRouter>)
       .toJSON();
 
