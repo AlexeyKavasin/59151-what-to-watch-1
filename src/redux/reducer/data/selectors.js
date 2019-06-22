@@ -17,6 +17,10 @@ export const getAllGenres = createSelector(
     (films) => ([ALL_GENRES, ...new Set(films.map((film) => film.genre))])
 );
 
+export const getFilmById = (films, filmId) => {
+  return films.find((film) => film.id === filmId);
+};
+
 export const filterFilmsByGenre = createSelector(
     getFilms,
     getCurrentGenre,

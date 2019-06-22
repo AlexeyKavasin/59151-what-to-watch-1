@@ -7,6 +7,8 @@ import {Favorites} from "../favorites/favorites";
 import {requireAuthorization} from "../../redux/reducer/actions";
 import {withPrivateRoute} from "../../hocs/with-private-route/with-private-route";
 import {IApp} from "../../interfaces";
+import {MoviePageDetails} from "../movie-page-details/movie-page-details";
+import {filterFilmsByGenre} from "../../redux/reducer/data/selectors.js";
 
 class App extends React.PureComponent<IApp, null> {
   render() {
@@ -41,6 +43,7 @@ class App extends React.PureComponent<IApp, null> {
         <Route path="/" exact component={() => <MainPage {...this.props}/>}/>
         <Route path="/login" component={() => <SignIn/>}/>
         <Route path="/favorites" component={withPrivateRoute(Favorites)}/>
+        <Route path="/film/:id" component={(props) => <MoviePageDetails {...props} films={this.props.films}/>} />
         <Route component={() => <h1>404 - Not found</h1>}/>
       </Switch>
     </React.Fragment>;
@@ -52,6 +55,7 @@ const mapStateToProps = (state, ownProps) => ({
   isAuthorizationRequired: state[`USER`].isAuthorizationRequired,
   isAuthorized: state[`USER`].isAuthorized,
   userData: state[`USER`].userData,
+  films: filterFilmsByGenre(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

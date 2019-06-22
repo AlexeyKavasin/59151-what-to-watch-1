@@ -1,8 +1,9 @@
 export interface IApp {
     isAuthorizationRequired: boolean,
     isAuthorized: boolean,
-    userData: null | userData
-    onSignInClick: () => void
+    userData: null | userData,
+    onSignInClick: () => void,
+    films: filmData[]
 }
 
 export interface ICatalog {
@@ -64,6 +65,10 @@ export interface IWithActiveCardState {
     activeCard: number
 }
 
+export interface IMoviePageDetails {
+    films: filmData[],
+}
+
 export interface userData {
     id: number,
     email: string,
@@ -77,5 +82,10 @@ export interface filmData {
     id: number,
     genre: string,
     preview_image: string,
-    preview_video_link: string
+    preview_video_link: string,
+    released: number,
+    background_image: string,
+    starring: string[],
+    director: string,
+    run_time: number
 }
