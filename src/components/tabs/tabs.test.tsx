@@ -1,10 +1,8 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import {HashRouter} from 'react-router-dom';
-import MovieList from './movielist';
+import {Tabs} from './tabs';
 
-const films = [
-  {
+const film = {
     name: `Matrix`,
     poster: `https://es31-server.appspot.com/wtw/static/film/preview/matrix.jpg`,
     id: 0,
@@ -19,20 +17,15 @@ const films = [
     rating: 10,
     scores_count: 1000,
     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, soluta dolor? Cumque perferendis quaerat natus sapiente accusantium sequi. Ullam itaque, voluptatem nostrum quae fugiat voluptates necessitatibus aperiam eum numquam officiis.`
-  }
-];
+};
 
-it(`Movie list renders correctly`, () => {
-  const tree = renderer
-    .create(
-      <HashRouter>
-        <MovieList
-          films={films}
-          activeCard={-1}
-          onMouseOver={jest.fn()}
-          onMouseLeave={jest.fn()}
-        />
-    </HashRouter>).toJSON();
+describe(`Tabs snapshot tests`, () => {
+  it(`Tabs render correctly`, () => {
+    const tree = renderer
+      .create(
+      <Tabs film={film}/>)
+      .toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
 });

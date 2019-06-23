@@ -1,3 +1,5 @@
+import { number } from "prop-types";
+
 export interface IApp {
     isAuthorizationRequired: boolean,
     isAuthorized: boolean,
@@ -68,6 +70,25 @@ export interface IMoviePageDetails {
     films: filmData[]
 }
 
+export interface ITabs {
+    film: filmData
+}
+
+export interface ITab {
+    tabId: number,
+    activeTab: number,
+    onTabClick: (evt, id: number) => void
+}
+
+export interface ITabContent {
+    tabId: number,
+    activeTab: number
+}
+
+export interface ITabsState {
+    activeTab: number
+}
+
 export interface userData {
     id: number,
     email: string,
@@ -86,5 +107,8 @@ export interface filmData {
     background_image: string,
     starring: string[],
     director: string,
+    scores_count: number,
+    rating: number,
+    description: string,
     run_time: number
 }
