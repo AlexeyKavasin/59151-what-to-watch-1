@@ -19,7 +19,6 @@ describe(`App snapshot tests`, () => {
               isAuthorized={false}
               onSignInClick={jest.fn()}
               userData={null}
-              films={null}
             />
           </HashRouter>)
       .toJSON();

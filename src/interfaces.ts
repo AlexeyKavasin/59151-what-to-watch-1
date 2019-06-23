@@ -2,8 +2,7 @@ export interface IApp {
     isAuthorizationRequired: boolean,
     isAuthorized: boolean,
     userData: null | userData,
-    onSignInClick: () => void,
-    films: filmData[]
+    onSignInClick: () => void
 }
 
 export interface ICatalog {
@@ -66,7 +65,7 @@ export interface IWithActiveCardState {
 }
 
 export interface IMoviePageDetails {
-    films: filmData[],
+    films: filmData[]
 }
 
 export interface userData {

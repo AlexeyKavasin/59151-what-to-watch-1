@@ -1,10 +1,11 @@
 import * as React from "react";
-import {Footer} from "../footer/footer";
+import {connect} from "react-redux";
 import {Link, RouteProps} from 'react-router-dom';
 import {getFilmById} from "../../redux/reducer/data/selectors.js";
+import {Footer} from "../footer/footer";
 import {IMoviePageDetails} from "../../interfaces";
 
-export class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, null> {
+class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, null> {
     render() {
         const {films} = this.props;
         const film = getFilmById(films, +this.props.match.params.id);
@@ -98,12 +99,12 @@ export class MoviePageDetails extends React.Component<IMoviePageDetails & RouteP
                   <div className="movie-card__desc">
                     <nav className="movie-nav movie-card__nav">
                       <ul className="movie-nav__list">
-                        <li className="movie-nav__item movie-nav__item--active">
+                        <li className="movie-nav__item">
                           <a href="#" className="movie-nav__link">
                             Overview
                           </a>
                         </li>
-                        <li className="movie-nav__item">
+                        <li className="movie-nav__item movie-nav__item--active">
                           <a href="#" className="movie-nav__link">
                             Details
                           </a>
@@ -281,3 +282,14 @@ export class MoviePageDetails extends React.Component<IMoviePageDetails & RouteP
         );
     }
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  films: state[`DATA`].films
+});
+
+export {MoviePageDetails};
+
+export default connect(
+    mapStateToProps,
+    null
+)(MoviePageDetails);
