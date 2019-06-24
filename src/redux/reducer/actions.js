@@ -3,7 +3,8 @@ import {
   LOAD_FILMS,
   REQUIRED_AUTHORIZATION,
   CHANGE_AUTHORIZATION_STATUS,
-  SAVE_USER_DATA
+  SAVE_USER_DATA,
+  SHOW_MORE_FILMS
 } from "./types";
 
 export const fetchFilms = () => (dispatch, getState, api) => {
@@ -56,4 +57,11 @@ export function saveUSerData(userData) {
     type: SAVE_USER_DATA,
     payload: userData
   };
+}
+
+export function showMoreFilms(filmsAmount) {
+  return {
+    type: SHOW_MORE_FILMS,
+    payload: filmsAmount
+  }
 }

@@ -1,12 +1,14 @@
 import {
   SELECT_GENRE,
-  LOAD_FILMS
+  LOAD_FILMS,
+  SHOW_MORE_FILMS
 } from "../types";
-import {ALL_GENRES} from "../../../constants/constants";
+import {ALL_GENRES, MAX_FILMS_TO_SHOW} from "../../../constants/constants";
 
 const initialState = {
   currentGenre: ALL_GENRES,
-  films: []
+  films: [],
+  filmsToShow: MAX_FILMS_TO_SHOW
 };
 
 export const reducer = (state = initialState, action) => {
@@ -17,6 +19,11 @@ export const reducer = (state = initialState, action) => {
       });
 
     case LOAD_FILMS:
+      return Object.assign({}, state, {
+        films: action.payload
+      });
+
+    case SHOW_MORE_FILMS:
       return Object.assign({}, state, {
         films: action.payload
       });

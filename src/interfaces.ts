@@ -11,7 +11,8 @@ export interface ICatalog {
     currentGenre: string,
     films: filmData[],
     genres: string[],
-    onGenreChange: (genre: string) => void
+    onGenreChange: (genre: string) => void,
+    onShowMoreClick: (filmsAmount: number) => void
 }
 
 export interface IGenresList {
@@ -23,6 +24,7 @@ export interface IGenresList {
 export interface IMovieList {
     films: filmData[],
     activeCard: number,
+    filmsToShow: number,
     onMouseOver: (evt, id: number) => void,
     onMouseLeave: () => void
 }
@@ -52,6 +54,15 @@ export interface ISignInState {
     password: null | string,
     isValidEmail: boolean,
     isValidPassword: boolean
+}
+
+export interface IShowMoreButton {
+    filmsToShow: number,
+    onShowMoreClick: (filmsAmount: number) => void
+}
+
+export interface IShowMoreButtonState {
+    filmsShown: number
 }
 
 export interface IWithPrivateRoute {
