@@ -122,7 +122,6 @@ Array [
     </svg>
   </div>,
   <MainPage
-    films={null}
     isAuthorizationRequired={false}
     isAuthorized={false}
     onSignInClick={[MockFunction]}

@@ -20,7 +20,6 @@ describe(`MainPage snapshot tests`, () => {
               isAuthorized={false}
               onSignInClick={mock}
               userData={null}
-              films={null}
               />
           </HashRouter>)
       .toJSON();

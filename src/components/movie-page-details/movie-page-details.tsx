@@ -1,13 +1,20 @@
 import * as React from "react";
-import {Footer} from "../footer/footer";
+import {connect} from "react-redux";
 import {Link, RouteProps} from 'react-router-dom';
 import {getFilmById} from "../../redux/reducer/data/selectors.js";
-import {IMoviePageDetails} from "../../interfaces";
+import {Tabs} from "../tabs/tabs";
+import {withActiveCard} from "../../hocs/with-active-card/with-active-card";
+import MovieList from "../movie-list/movielist";
+import {Footer} from "../footer/footer";
+import {IMoviePageDetails, filmData} from "../../interfaces";
 
-export class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, null> {
+const MovieListWithActiveCard = withActiveCard(MovieList);
+
+class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, null> {
     render() {
         const {films} = this.props;
         const film = getFilmById(films, +this.props.match.params.id);
+        const filmsLikeThis = films.filter((f: filmData) => f.genre === film.genre).slice(0, 4);
         return (
           <React.Fragment>
             <section className="movie-card movie-card--full">
@@ -96,73 +103,7 @@ export class MoviePageDetails extends React.Component<IMoviePageDetails & RouteP
                   </div>
 
                   <div className="movie-card__desc">
-                    <nav className="movie-nav movie-card__nav">
-                      <ul className="movie-nav__list">
-                        <li className="movie-nav__item movie-nav__item--active">
-                          <a href="#" className="movie-nav__link">
-                            Overview
-                          </a>
-                        </li>
-                        <li className="movie-nav__item">
-                          <a href="#" className="movie-nav__link">
-                            Details
-                          </a>
-                        </li>
-                        <li className="movie-nav__item">
-                          <a href="#" className="movie-nav__link">
-                            Reviews
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
-
-                    <div className="movie-card__text movie-card__row">
-                      <div className="movie-card__text-col">
-                        <p className="movie-card__details-item">
-                          <strong className="movie-card__details-name">
-                            Director
-                          </strong>
-                          <span className="movie-card__details-value">
-                            {film.director}
-                          </span>
-                        </p>
-                        <p className="movie-card__details-item">
-                          <strong className="movie-card__details-name">
-                            Starring
-                          </strong>
-                          <span className="movie-card__details-value">
-                            {film.starring.map((actor: string) => actor).join(', ')}
-                          </span>
-                        </p>
-                      </div>
-
-                      <div className="movie-card__text-col">
-                        <p className="movie-card__details-item">
-                          <strong className="movie-card__details-name">
-                            Run Time
-                          </strong>
-                          <span className="movie-card__details-value">
-                            {film.run_time}
-                          </span>
-                        </p>
-                        <p className="movie-card__details-item">
-                          <strong className="movie-card__details-name">
-                            Genre
-                          </strong>
-                          <span className="movie-card__details-value">
-                            {film.genre}
-                          </span>
-                        </p>
-                        <p className="movie-card__details-item">
-                          <strong className="movie-card__details-name">
-                            Released
-                          </strong>
-                          <span className="movie-card__details-value">
-                            {film.released}
-                          </span>
-                        </p>
-                      </div>
-                    </div>
+                    <Tabs film={film}/>
                   </div>
                 </div>
               </div>
@@ -171,108 +112,7 @@ export class MoviePageDetails extends React.Component<IMoviePageDetails & RouteP
             <div className="page-content">
               <section className="catalog catalog--like-this">
                 <h2 className="catalog__title">More like this</h2>
-
-                <div className="catalog__movies-list">
-                  <article className="small-movie-card catalog__movies-card">
-                    <button
-                      className="small-movie-card__play-btn"
-                      type="button"
-                    >
-                      Play
-                    </button>
-                    <div className="small-movie-card__image">
-                      <img
-                        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                        alt="Fantastic Beasts: The Crimes of Grindelwald"
-                        width="280"
-                        height="175"
-                      />
-                    </div>
-                    <h3 className="small-movie-card__title">
-                      <a
-                        className="small-movie-card__link"
-                        href="movie-page.html"
-                      >
-                        Fantastic Beasts: The Crimes of Grindelwald
-                      </a>
-                    </h3>
-                  </article>
-
-                  <article className="small-movie-card catalog__movies-card">
-                    <button
-                      className="small-movie-card__play-btn"
-                      type="button"
-                    >
-                      Play
-                    </button>
-                    <div className="small-movie-card__image">
-                      <img
-                        src="img/bohemian-rhapsody.jpg"
-                        alt="Bohemian Rhapsody"
-                        width="280"
-                        height="175"
-                      />
-                    </div>
-                    <h3 className="small-movie-card__title">
-                      <a
-                        className="small-movie-card__link"
-                        href="movie-page.html"
-                      >
-                        Bohemian Rhapsody
-                      </a>
-                    </h3>
-                  </article>
-
-                  <article className="small-movie-card catalog__movies-card">
-                    <button
-                      className="small-movie-card__play-btn"
-                      type="button"
-                    >
-                      Play
-                    </button>
-                    <div className="small-movie-card__image">
-                      <img
-                        src="img/macbeth.jpg"
-                        alt="Macbeth"
-                        width="280"
-                        height="175"
-                      />
-                    </div>
-                    <h3 className="small-movie-card__title">
-                      <a
-                        className="small-movie-card__link"
-                        href="movie-page.html"
-                      >
-                        Macbeth
-                      </a>
-                    </h3>
-                  </article>
-
-                  <article className="small-movie-card catalog__movies-card">
-                    <button
-                      className="small-movie-card__play-btn"
-                      type="button"
-                    >
-                      Play
-                    </button>
-                    <div className="small-movie-card__image">
-                      <img
-                        src="img/aviator.jpg"
-                        alt="Aviator"
-                        width="280"
-                        height="175"
-                      />
-                    </div>
-                    <h3 className="small-movie-card__title">
-                      <a
-                        className="small-movie-card__link"
-                        href="movie-page.html"
-                      >
-                        Aviator
-                      </a>
-                    </h3>
-                  </article>
-                </div>
+                <MovieListWithActiveCard films={filmsLikeThis}/>
               </section>
 
             <Footer/>
@@ -281,3 +121,14 @@ export class MoviePageDetails extends React.Component<IMoviePageDetails & RouteP
         );
     }
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  films: state[`DATA`].films
+});
+
+export {MoviePageDetails};
+
+export default connect(
+    mapStateToProps,
+    null
+)(MoviePageDetails);

@@ -21,8 +21,8 @@ const store = createStore(
     applyMiddleware(...middlewares)
 );
 
-const init = () => {
-  store.dispatch(fetchFilms());
+async function init() {
+  await store.dispatch(fetchFilms());
 
   ReactDOM.render(
       <Provider store={store}>
