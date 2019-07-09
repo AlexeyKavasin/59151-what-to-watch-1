@@ -20,8 +20,16 @@ describe(`Catalog tests`, () => {
     const genres = [`All genres`, `Comedy`, `Documentary`];
     const currentGenre = `All genres`;
     const onGenreChange = jest.fn;
+    const onShowMoreClick = jest.fn;
     const tree = renderer
-      .create(<Catalog onGenreChange={onGenreChange} films={films} currentGenre={currentGenre} genres={genres}/>)
+      .create(<Catalog 
+        filmsToShow={20}
+        filmsLength={20}
+        onShowMoreClick={onShowMoreClick}
+        onGenreChange={onGenreChange}
+        films={films}
+        currentGenre={currentGenre}
+        genres={genres}/>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

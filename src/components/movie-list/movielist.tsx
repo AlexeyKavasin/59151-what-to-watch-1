@@ -7,7 +7,7 @@ export default class MovieList extends React.Component<IMovieList, null> {
     const {films, onMouseOver, onMouseLeave, activeCard, filmsToShow} = this.props;
     return <React.Fragment>
       <div className="catalog__movies-list">
-        {films.map((film, index) => {
+        {films.slice(0, filmsToShow).map((film, index) => {
             return <MovieCard
               name={film.name}
               poster={film.preview_image}

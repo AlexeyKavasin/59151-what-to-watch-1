@@ -1,5 +1,3 @@
-import { number } from "prop-types";
-
 export interface IApp {
     isAuthorizationRequired: boolean,
     isAuthorized: boolean,
@@ -10,6 +8,8 @@ export interface IApp {
 export interface ICatalog {
     currentGenre: string,
     films: filmData[],
+    filmsToShow: number,
+    filmsLength: number,
     genres: string[],
     onGenreChange: (genre: string) => void,
     onShowMoreClick: (filmsAmount: number) => void
@@ -58,8 +58,10 @@ export interface ISignInState {
 
 export interface IShowMoreButton {
     filmsToShow: number,
+    filmsLength: number,
     onShowMoreClick: (filmsAmount: number) => void
 }
+
 
 export interface IShowMoreButtonState {
     filmsShown: number

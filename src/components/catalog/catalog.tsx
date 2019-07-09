@@ -7,19 +7,18 @@ import {getCurrentGenre, getAllGenres, filterFilmsByGenre} from "../../redux/red
 import {withActiveCard} from "../../hocs/with-active-card/with-active-card";
 import {selectGenre, showMoreFilms} from "../../redux/reducer/actions";
 import {ICatalog} from "../../interfaces";
-import {MAX_FILMS_TO_SHOW} from "../../constants/constants";
 
 const MovieListWithActiveCard = withActiveCard(MovieList);
 
 class Catalog extends React.PureComponent<ICatalog, null> {
   render() {
-    const {films, genres, onGenreChange, currentGenre, onShowMoreClick} = this.props;
+    const {films, filmsToShow, genres, onGenreChange, currentGenre, onShowMoreClick} = this.props;
     return (
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <GenresList genres={genres} currentGenre={currentGenre} onGenreChange={onGenreChange}/>
-        <MovieListWithActiveCard films={films} filmsToShow={MAX_FILMS_TO_SHOW}/>
-        <ShowMoreButton onShowMoreClick={onShowMoreClick} filmsToShow={MAX_FILMS_TO_SHOW}/>
+        <MovieListWithActiveCard films={films} filmsToShow={filmsToShow}/>
+        <ShowMoreButton filmsLength={films.length} onShowMoreClick={onShowMoreClick} filmsToShow={filmsToShow}/>
       </section>
     );
   }
@@ -29,7 +28,8 @@ const mapStateToProps = (state, ownProps) => ({
   ownProps,
   currentGenre: getCurrentGenre(state),
   genres: getAllGenres(state),
-  films: filterFilmsByGenre(state)
+  films: filterFilmsByGenre(state),
+  filmsToShow: state[`DATA`].filmsToShow
 });
 
 const mapDispatchToProps = (dispatch) => ({

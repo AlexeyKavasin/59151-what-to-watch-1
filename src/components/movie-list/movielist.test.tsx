@@ -27,6 +27,7 @@ it(`Movie list renders correctly`, () => {
     .create(
       <HashRouter>
         <MovieList
+          filmsToShow={20}
           films={films}
           activeCard={-1}
           onMouseOver={jest.fn()}
