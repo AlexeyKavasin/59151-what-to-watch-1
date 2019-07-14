@@ -19,6 +19,9 @@ describe(`App snapshot tests`, () => {
               isAuthorized={false}
               onSignInClick={jest.fn()}
               userData={null}
+              isFullWidthPlayerActive={false}
+              filmOnTheMainPage={null}
+              toggleFullWidthPlayer={jest.fn()}
             />
           </HashRouter>)
       .toJSON();

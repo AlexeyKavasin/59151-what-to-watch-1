@@ -17,7 +17,7 @@ class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, n
         const filmsLikeThis = films.filter((f: filmData) => f.genre === film.genre).slice(0, 4);
         return (
           <React.Fragment>
-            <section className="movie-card movie-card--full">
+            <section className="movie-card movie-card--full" style={{backgroundColor: film.background_color}}>
               <div className="movie-card__hero">
                 <div className="movie-card__bg">
                   <img

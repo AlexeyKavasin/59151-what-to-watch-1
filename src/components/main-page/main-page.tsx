@@ -1,16 +1,32 @@
 import * as React from "react";
+import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 import Catalog from "../catalog/catalog";
 import {IApp} from "../../interfaces";
 import {Footer} from "../footer/footer";
+import {FullWidthPlayer} from "../full-width-player/full-width-player";
 
-export default class MainPage extends React.PureComponent<IApp, null> {
+class MainPage extends React.PureComponent<IApp, null> {
+
   render() {
-    const {isAuthorized, userData, onSignInClick} = this.props;
+    const {filmOnTheMainPage, isAuthorized, userData, onSignInClick, isFullWidthPlayerActive, toggleFullWidthPlayer} = this.props;
+
     return <React.Fragment>
-      <section className="movie-card">
+      {
+        isFullWidthPlayerActive ?
+        <FullWidthPlayer 
+          videoSrc={filmOnTheMainPage.video_link}
+          poster={filmOnTheMainPage.background_image}
+          runTime={filmOnTheMainPage.run_time}
+          percentsPassed={0}
+          toggleFullWidthPlayer={toggleFullWidthPlayer}
+          isPlaying={isFullWidthPlayerActive}
+          filmName={filmOnTheMainPage.name}
+        /> :
+        <React.Fragment>
+        <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={filmOnTheMainPage.background_image} alt={filmOnTheMainPage.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -38,18 +54,20 @@ export default class MainPage extends React.PureComponent<IApp, null> {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <Link to={`/film/${filmOnTheMainPage.id}`}>
+                <img src={filmOnTheMainPage.poster_image} alt={filmOnTheMainPage.name} width="218" height="327" />
+              </Link>
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{filmOnTheMainPage.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{filmOnTheMainPage.genre}</span>
+                <span className="movie-card__year">{filmOnTheMainPage.released}</span>
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button onClick={toggleFullWidthPlayer} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -74,6 +92,20 @@ export default class MainPage extends React.PureComponent<IApp, null> {
         <Footer/>
 
       </div>
+      </React.Fragment>
+      }
     </React.Fragment>;
   }
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  ownProps,
+  filmOnTheMainPage: state[`DATA`].films[9]
+});
+
+export {MainPage};
+
+export default connect(
+    mapStateToProps,
+    null
+)(MainPage);

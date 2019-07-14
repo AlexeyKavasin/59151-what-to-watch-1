@@ -2,7 +2,30 @@ export interface IApp {
     isAuthorizationRequired: boolean,
     isAuthorized: boolean,
     userData: null | userData,
+    isFullWidthPlayerActive: boolean,
+    filmOnTheMainPage: filmData,
+    toggleFullWidthPlayer: () => void,
     onSignInClick: () => void
+}
+
+export interface IFullWidthPlayer {
+    videoSrc: string,
+    poster: string,
+    percentsPassed: number,
+    runTime: number,
+    isPlaying: boolean,
+    filmName: string,
+    toggleFullWidthPlayer: () => void
+}
+
+export interface IWithActiveFullWidthPlayer {
+    isFullWidthPlayerActive: boolean
+    toggleFullPlayer: () => void,
+
+}
+
+export interface IWithActiveFullWidthPlayerState {
+    isFullWidthPlayerActive: boolean
 }
 
 export interface ICatalog {
@@ -112,6 +135,7 @@ export interface userData {
 export interface filmData {
     name: string,
     poster: string,
+    poster_image: string,
     id: number,
     genre: string,
     preview_image: string,
@@ -123,5 +147,6 @@ export interface filmData {
     scores_count: number,
     rating: number,
     description: string,
-    run_time: number
+    run_time: number,
+    video_link: string
 }
