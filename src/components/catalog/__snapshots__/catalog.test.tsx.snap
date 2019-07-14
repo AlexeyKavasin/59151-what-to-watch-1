@@ -66,14 +66,21 @@ exports[`Catalog tests Catalog renders correctly 1`] = `
         },
       ]
     }
+    filmsToShow={20}
     onMouseLeave={[Function]}
     onMouseOver={[Function]}
   />
   <div
     className="catalog__more"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
   >
     <button
       className="catalog__button"
+      onClick={[Function]}
       type="button"
     >
       Show more

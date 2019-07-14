@@ -63,5 +63,5 @@ export function showMoreFilms(filmsAmount) {
   return {
     type: SHOW_MORE_FILMS,
     payload: filmsAmount
-  }
+  };
 }
