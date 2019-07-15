@@ -18,9 +18,7 @@ class MainPage extends React.PureComponent<IApp, null> {
           videoSrc={filmOnTheMainPage.video_link}
           poster={filmOnTheMainPage.background_image}
           runTime={filmOnTheMainPage.run_time}
-          percentsPassed={0}
           toggleFullWidthPlayer={toggleFullWidthPlayer}
-          isPlaying={isFullWidthPlayerActive}
           filmName={filmOnTheMainPage.name}
         /> :
         <React.Fragment>

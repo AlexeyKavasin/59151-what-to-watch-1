@@ -1,34 +1,91 @@
 import * as React from "react";
-import { IFullWidthPlayer } from "../../interfaces";
+import { IFullWidthPlayer, IFullWidthPlayerState } from "../../interfaces";
 
-export class FullWidthPlayer extends React.Component<IFullWidthPlayer, null> {
+export class FullWidthPlayer extends React.Component<IFullWidthPlayer, IFullWidthPlayerState> {
   private _videoRef: React.RefObject<HTMLVideoElement>;
+  private timer: number | null;
+  private _isMounted: boolean;
 
   constructor(props) {
     super(props);
     this._videoRef = React.createRef();
+    this.timer = null;
+    this._isMounted = false;
+    this.state = {
+      isPlaying: false,
+      secondsPassed: 0,
+      percentsPassed: 0,
+      videoEnded: false
+    }
+
+    this.togglePlay = this.togglePlay.bind(this);
+    this.startTimer = this.startTimer.bind(this);
+    this.pauseTimer = this.pauseTimer.bind(this);
+  }
+
+  togglePlay() {
+    if (this._isMounted) {
+      this.setState({
+        isPlaying: !this.state.isPlaying
+      })
+    }
+  }
+
+  startTimer() {
+    this.timer = window.setInterval(() => {
+      if (this._isMounted) {
+        this.setState({
+          secondsPassed: this.state.secondsPassed + 1,
+          percentsPassed: (this.state.secondsPassed / (this.props.runTime * 60)) * 100
+        })
+
+        if (this.state.percentsPassed >= 100) {
+          this.togglePlay();
+          this.setState({
+            videoEnded: true
+          })
+        }
+      }
+    }, 1000)
+  }
+
+  pauseTimer() {
+    clearInterval(this.timer);
   }
 
   componentDidMount() {
+    this._isMounted = true;
+    this.togglePlay();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
     const video = this._videoRef.current;
-    if (this.props.isPlaying) {
-      video.play();
-    } else {
-      video.pause();
+
+    if (prevState.isPlaying !== this.state.isPlaying) {
+      if (this.state.isPlaying) {
+        video.play();
+        this.startTimer();
+      } else {
+        video.pause()
+        this.pauseTimer();
+      }
+    }
+
+    if (prevState.videoEnded !== this.state.videoEnded) {
+      this.setState({
+        secondsPassed: 0,
+        percentsPassed: 0
+      })
+      video.currentTime = 0;
     }
   }
 
-  componentDidUpdate() {
-    const video = this._videoRef.current;
-    if (this.props.isPlaying) {
-      video.play();
-    } else {
-      video.pause();
-    }
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
-  formatRuntime(runtime): string {
-		const totalTimeInSec = runtime * 60;
+  formatRemainingTime(runtime): string {
+		const totalTimeInSec = (runtime * 60) - this.state.secondsPassed;
 
 		const hours = Math.floor(totalTimeInSec / 3600);
 		const min = Math.floor((totalTimeInSec - (hours * 3600)) / 60);
@@ -41,10 +98,8 @@ export class FullWidthPlayer extends React.Component<IFullWidthPlayer, null> {
     const {
       videoSrc,
       poster,
-      percentsPassed,
       runTime,
       toggleFullWidthPlayer,
-			isPlaying,
 			filmName
     } = this.props;
 
@@ -69,25 +124,25 @@ export class FullWidthPlayer extends React.Component<IFullWidthPlayer, null> {
           <div className="player__controls">
             <div className="player__controls-row">
               <div className="player__time">
-                <progress className="player__progress" value={percentsPassed} max="100" />
+                <progress className="player__progress" value={this.state.percentsPassed} max="100" />
                 <div
                   className="player__toggler"
-                  style={{ left: `${percentsPassed}` }}
+                  style={{ left: `${this.state.percentsPassed}%` }}
                 >
                   Toggler
                 </div>
               </div>
               <div className="player__time-value">
-                {this.formatRuntime(runTime)}
+                {this.formatRemainingTime(runTime)}
               </div>
             </div>
 
             <div className="player__controls-row">
-              <button type="button" className="player__play">
+              <button onClick={this.togglePlay} type="button" className="player__play">
                 <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref={isPlaying ? "#pause" : "#play-s"} />
+                  <use xlinkHref={this.state.isPlaying ? "#pause" : "#play-s"} />
                 </svg>
-                <span>{isPlaying ? "Pause" : "Play"}</span>
+                <span>{this.state.isPlaying ? "Pause" : "Play"}</span>
               </button>
               <div className="player__name">{filmName}</div>
 

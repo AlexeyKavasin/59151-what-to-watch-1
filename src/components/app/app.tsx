@@ -13,6 +13,7 @@ import {withActiveFullWidthPlayer} from "../../hocs/with-active-full-width-playe
 
 const FavoritesWithPrivateRoute = withPrivateRoute(Favorites);
 const MainPageWithFullWidthPlayer = withActiveFullWidthPlayer(MainPage);
+const MoviePageDetailsWithFullWidthPlayer = withActiveFullWidthPlayer(MoviePageDetails);
 
 class App extends React.PureComponent<IApp, null> {
   render() {
@@ -22,7 +23,7 @@ class App extends React.PureComponent<IApp, null> {
         <Route path="/" exact component={() => <MainPageWithFullWidthPlayer {...this.props}/>}/>
         <Route path="/login" component={SignIn}/>
         <Route path="/favorites" component={FavoritesWithPrivateRoute}/>
-        <Route path="/film/:id" component={MoviePageDetails} />
+        <Route path="/film/:id" component={(props) => <MoviePageDetailsWithFullWidthPlayer {...props} />}/>
         <Route component={() => <h1>404 - Not found</h1>}/>
       </Switch>
     </React.Fragment>;

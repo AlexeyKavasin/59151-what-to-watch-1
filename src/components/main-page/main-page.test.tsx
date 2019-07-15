@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import {HashRouter} from 'react-router-dom';
-import MainPage from './main-page';
+import {MainPage} from './main-page';
 
 jest.mock(`../catalog/catalog`, () => {
   return {

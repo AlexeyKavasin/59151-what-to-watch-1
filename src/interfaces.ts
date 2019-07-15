@@ -11,11 +11,16 @@ export interface IApp {
 export interface IFullWidthPlayer {
     videoSrc: string,
     poster: string,
-    percentsPassed: number,
     runTime: number,
-    isPlaying: boolean,
     filmName: string,
     toggleFullWidthPlayer: () => void
+}
+
+export interface IFullWidthPlayerState {
+    isPlaying: boolean,
+    secondsPassed: number,
+    percentsPassed: number,
+    videoEnded: boolean
 }
 
 export interface IWithActiveFullWidthPlayer {

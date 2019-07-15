@@ -122,9 +122,12 @@ Array [
     </svg>
   </div>,
   <MainPage
+    filmOnTheMainPage={null}
     isAuthorizationRequired={false}
     isAuthorized={false}
+    isFullWidthPlayerActive={false}
     onSignInClick={[MockFunction]}
+    toggleFullWidthPlayer={[Function]}
     userData={null}
   />,
 ]
