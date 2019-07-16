@@ -41,7 +41,7 @@ class MainPage extends React.PureComponent<IApp, null> {
           <div className="user-block">
             {isAuthorized && userData ? (
               <div className="user-block__avatar">
-                <img src={userData.avatarUrl} alt={userData.name} width="63" height="63" />
+                <img src={`https://es31-server.appspot.com/${userData.avatar_url}`} alt={userData.name} width="63" height="63" />
               </div>
             ) :
               (<Link className="user-block__link" to="/login" onClick={onSignInClick}>Sign In</Link>)

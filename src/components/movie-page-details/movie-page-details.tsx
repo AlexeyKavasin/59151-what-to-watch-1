@@ -14,6 +14,7 @@ const MovieListWithActiveCard = withActiveCard(MovieList);
 class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, null> {
     render() {
         const {films, isFullWidthPlayerActive, toggleFullWidthPlayer, isAuthorized, userData, onSignInClick} = this.props;
+        
         const film = getFilmById(films, +this.props.match.params.id);
         const filmsLikeThis = films.filter((f: filmData) => f.genre === film.genre).slice(0, 4);
         return (
@@ -57,7 +58,7 @@ class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, n
                       <div className="user-block">
                       {isAuthorized && userData ? (
                         <div className="user-block__avatar">
-                          <img src={userData.avatarUrl} alt={userData.name} width="63" height="63" />
+                          <img src={`https://es31-server.appspot.com/${userData.avatar_url}`} alt={userData.name} width="63" height="63" />
                         </div>
                       ) :
                         (<Link className="user-block__link" to="/login" onClick={onSignInClick}>Sign In</Link>)
@@ -151,7 +152,10 @@ class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, n
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  films: state[`DATA`].films
+  films: state[`DATA`].films,
+  isAuthorizationRequired: state[`USER`].isAuthorizationRequired,
+  isAuthorized: state[`USER`].isAuthorized,
+  userData: state[`USER`].userData
 });
 
 export {MoviePageDetails};

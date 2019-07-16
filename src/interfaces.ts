@@ -134,7 +134,7 @@ export interface userData {
     id: number,
     email: string,
     name: string,
-    avatarUrl: string
+    avatar_url: string
 }
 
 export interface filmData {
