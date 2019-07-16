@@ -21,6 +21,7 @@ export class FullWidthPlayer extends React.Component<IFullWidthPlayer, IFullWidt
     this.togglePlay = this.togglePlay.bind(this);
     this.startTimer = this.startTimer.bind(this);
     this.pauseTimer = this.pauseTimer.bind(this);
+    this.handleFullScreenClick = this.handleFullScreenClick.bind(this);
   }
 
   togglePlay() {
@@ -53,6 +54,22 @@ export class FullWidthPlayer extends React.Component<IFullWidthPlayer, IFullWidt
     clearInterval(this.timer);
   }
 
+  formatRemainingTime(runtime): string {
+		const totalTimeInSec = (runtime * 60) - this.state.secondsPassed;
+
+		const hours = Math.floor(totalTimeInSec / 3600);
+		const min = Math.floor((totalTimeInSec - (hours * 3600)) / 60);
+		const sec = totalTimeInSec % 60;
+
+    return [hours, min, sec].map((val: number) => val > 10 ? val : `0${val}`).join(':');
+  }
+
+  handleFullScreenClick() {
+    const video = this._videoRef.current;
+
+    video.requestFullscreen();
+  }
+
   componentDidMount() {
     this._isMounted = true;
     this.togglePlay();
@@ -82,16 +99,6 @@ export class FullWidthPlayer extends React.Component<IFullWidthPlayer, IFullWidt
 
   componentWillUnmount() {
     this._isMounted = false;
-  }
-
-  formatRemainingTime(runtime): string {
-		const totalTimeInSec = (runtime * 60) - this.state.secondsPassed;
-
-		const hours = Math.floor(totalTimeInSec / 3600);
-		const min = Math.floor((totalTimeInSec - (hours * 3600)) / 60);
-		const sec = totalTimeInSec % 60;
-
-    return [hours, min, sec].map((val: number) => val > 10 ? val : `0${val}`).join(':');
   }
 
   render() {
@@ -146,7 +153,7 @@ export class FullWidthPlayer extends React.Component<IFullWidthPlayer, IFullWidt
               </button>
               <div className="player__name">{filmName}</div>
 
-              <button type="button" className="player__full-screen">
+              <button type="button" onClick={this.handleFullScreenClick} className="player__full-screen">
                 <svg viewBox="0 0 27 27" width="27" height="27">
                   <use xlinkHref="#full-screen" />
                 </svg>
