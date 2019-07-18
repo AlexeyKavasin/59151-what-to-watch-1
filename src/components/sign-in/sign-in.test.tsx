@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import {HashRouter} from 'react-router-dom';
+import {Router} from 'react-router-dom';
 import {SignIn} from './sign-in';
 
 describe(`SignIn snapshot tests`, () => {
@@ -8,9 +8,9 @@ describe(`SignIn snapshot tests`, () => {
     const mock = jest.fn();
     const tree = renderer
       .create(
-          <HashRouter>
+          <Router>
             <SignIn authorizeUser={mock}/>
-          </HashRouter>)
+          </Router>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

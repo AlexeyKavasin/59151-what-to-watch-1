@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import {HashRouter} from 'react-router-dom';
+import {Router} from 'react-router-dom';
 import MovieList from './movielist';
 
 const films = [
@@ -27,7 +27,7 @@ const films = [
 it(`Movie list renders correctly`, () => {
   const tree = renderer
     .create(
-      <HashRouter>
+      <Router>
         <MovieList
           filmsToShow={20}
           films={films}
@@ -35,7 +35,7 @@ it(`Movie list renders correctly`, () => {
           onMouseOver={jest.fn()}
           onMouseLeave={jest.fn()}
         />
-    </HashRouter>).toJSON();
+    </Router>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

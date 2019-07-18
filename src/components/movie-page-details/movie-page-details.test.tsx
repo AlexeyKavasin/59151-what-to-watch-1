@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import {HashRouter} from 'react-router-dom';
+import {Router} from 'react-router-dom';
 import {MoviePageDetails} from './movie-page-details';
 
 const films = [
@@ -20,12 +20,12 @@ const films = [
 it(`Movie list renders correctly`, () => {
   const tree = renderer
     .create(
-      <HashRouter>
+      <Router>
         <MoviePageDetails
           films={films}
           match={{params: {id: 1}}}
         />
-    </HashRouter>).toJSON();
+    </Router>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

@@ -16,7 +16,8 @@ class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, n
         const {films, isFullWidthPlayerActive, toggleFullWidthPlayer, isAuthorized, userData, onSignInClick} = this.props;
         
         const film = getFilmById(films, +this.props.match.params.id);
-        const filmsLikeThis = films.filter((f: filmData) => f.genre === film.genre).slice(0, 4);
+        const filmsLikeThis = films.filter((f: filmData) => f.genre === film.genre && f.id !== film.id).slice(0, 4);
+
         return (
           <React.Fragment>
             {isFullWidthPlayerActive ? (
@@ -107,12 +108,15 @@ class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, n
                             </svg>
                             <span>My list</span>
                           </button>
-                          <a
-                            href="add-review.html"
-                            className="btn movie-card__button"
-                          >
-                            Add review
-                          </a>
+                          {isAuthorized && userData ? (
+                            <Link
+                              to={`/reviews/add/${film.id}`}
+                              href="add-review.html"
+                              className="btn movie-card__button"
+                            >Add review
+                            </Link>
+                            ) : null
+                          }
                         </div>
                       </div>
                     </div>

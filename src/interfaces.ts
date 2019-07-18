@@ -3,6 +3,7 @@ export interface IApp {
     isAuthorized: boolean,
     userData: null | userData,
     isFullWidthPlayerActive: boolean,
+    films: filmData,
     filmOnTheMainPage: filmData,
     toggleFullWidthPlayer: () => void,
     onSignInClick: () => void
@@ -154,4 +155,8 @@ export interface filmData {
     description: string,
     run_time: number,
     video_link: string
+}
+
+export interface IAddReview {
+    films: filmData[]
 }

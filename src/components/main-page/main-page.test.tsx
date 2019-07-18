@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import {HashRouter} from 'react-router-dom';
+import {Router} from 'react-router-dom';
 import {MainPage} from './main-page';
 
 jest.mock(`../catalog/catalog`, () => {
@@ -33,8 +33,9 @@ describe(`MainPage snapshot tests`, () => {
     const mock = jest.fn();
     const tree = renderer
       .create(
-          <HashRouter>
+          <Router>
             <MainPage
+              films={null}
               isAuthorizationRequired={false}
               isAuthorized={false}
               onSignInClick={mock}
@@ -43,7 +44,7 @@ describe(`MainPage snapshot tests`, () => {
               toggleFullWidthPlayer={mock}
               filmOnTheMainPage={film}
               />
-          </HashRouter>)
+          </Router>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

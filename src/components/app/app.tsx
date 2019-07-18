@@ -10,6 +10,7 @@ import {IApp} from "../../interfaces";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
 import {SvgIcons} from "../svg-icons/svg-icons";
 import {withActiveFullWidthPlayer} from "../../hocs/with-active-full-width-player/with-active-full-width-player";
+import AddReview from "../add-review/add-review";
 
 const FavoritesWithPrivateRoute = withPrivateRoute(Favorites);
 const MainPageWithFullWidthPlayer = withActiveFullWidthPlayer(MainPage);
@@ -24,6 +25,7 @@ class App extends React.PureComponent<IApp, null> {
         <Route path="/login" component={SignIn}/>
         <Route path="/favorites" component={FavoritesWithPrivateRoute}/>
         <Route path="/film/:id" component={(props) => <MoviePageDetailsWithFullWidthPlayer {...props} />}/>
+        <Route path="/reviews/add/:id" component={(props) => <AddReview {...props} films={this.props.films}/> }/>
         <Route component={() => <h1>404 - Not found</h1>}/>
       </Switch>
     </React.Fragment>;
@@ -32,6 +34,7 @@ class App extends React.PureComponent<IApp, null> {
 
 const mapStateToProps = (state, ownProps) => ({
   ownProps,
+  films: state[`DATA`].films,
   isAuthorizationRequired: state[`USER`].isAuthorizationRequired,
   isAuthorized: state[`USER`].isAuthorized,
   userData: state[`USER`].userData
