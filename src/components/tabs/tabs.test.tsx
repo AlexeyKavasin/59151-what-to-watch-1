@@ -25,7 +25,7 @@ describe(`Tabs snapshot tests`, () => {
   it(`Tabs render correctly`, () => {
     const tree = renderer
       .create(
-      <Tabs film={film}/>)
+      <Tabs comments={null} film={film}/>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

@@ -5,6 +5,7 @@ import {
   CHANGE_AUTHORIZATION_STATUS,
   SAVE_USER_DATA,
   SHOW_MORE_FILMS,
+  LOAD_COMMENTS,
   ADD_COMMENT
 } from "./types";
 
@@ -25,6 +26,12 @@ export const sendUserData = (email, password) => (dispatch, getState, api) => {
   });
 };
 
+export const getUserComments = (filmId) => (dispatch, getState, api) => {
+  return api.get(`/comments/${filmId}`).then((response) => {
+    dispatch(loadComments(response.data));
+  });
+};
+
 export const sendUserComment = ({comment, rating, filmId}) => (dispatch, getState, api) => {
   return api.post(`/comments/${filmId}`, {comment, rating}).then((response) => {
     dispatch(addComment(response.data));
@@ -35,6 +42,13 @@ export function loadFilms(fetchedFilms) {
   return {
     type: LOAD_FILMS,
     payload: fetchedFilms
+  };
+}
+
+export function loadComments(fetchComments) {
+  return {
+    type: LOAD_COMMENTS,
+    payload: fetchComments
   };
 }
 

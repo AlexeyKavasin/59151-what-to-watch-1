@@ -3,6 +3,12 @@ import * as renderer from 'react-test-renderer';
 import {HashRouter} from 'react-router-dom';
 import {MoviePageDetails} from './movie-page-details';
 
+jest.mock(`../tabs/tabs`, () => {
+  return {
+    'default': 'Tabs'
+  }
+});
+
 const films = [
     {
       name: `Matrix`,
@@ -17,7 +23,7 @@ const films = [
     }
   ];
 
-it(`Movie list renders correctly`, () => {
+it(`Movie page details renders correctly`, () => {
   const tree = renderer
     .create(
       <HashRouter>

@@ -2,7 +2,8 @@ import {
   SELECT_GENRE,
   LOAD_FILMS,
   SHOW_MORE_FILMS,
-  ADD_COMMENT
+  ADD_COMMENT,
+  LOAD_COMMENTS
 } from "../types";
 import {ALL_GENRES, FILMS_TO_SHOW_PER_LOAD} from "../../../constants/constants";
 
@@ -28,6 +29,11 @@ export const reducer = (state = initialState, action) => {
     case SHOW_MORE_FILMS:
       return Object.assign({}, state, {
         filmsToShow: action.payload
+      });
+
+    case LOAD_COMMENTS:
+      return Object.assign({}, state, {
+        comments: action.payload
       });
 
     case ADD_COMMENT:

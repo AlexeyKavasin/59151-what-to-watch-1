@@ -2,22 +2,27 @@ import * as React from "react";
 import {connect} from "react-redux";
 import {Link, RouteProps, Redirect} from 'react-router-dom';
 import {getFilmById} from "../../redux/reducer/data/selectors.js";
-import {Tabs} from "../tabs/tabs";
+import Tabs from "../tabs/tabs";
 import {withActiveCard} from "../../hocs/with-active-card/with-active-card";
 import MovieList from "../movie-list/movielist";
 import {Footer} from "../footer/footer";
 import {FullWidthPlayer} from "../full-width-player/full-width-player";
 import {IMoviePageDetails, filmData} from "../../interfaces";
+import {getUserComments} from "../../redux/reducer/actions.js";
 
 const MovieListWithActiveCard = withActiveCard(MovieList);
 
 class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, null> {
+
+    componentDidMount() {
+      this.props.loadComments && this.props.loadComments(+this.props.match.params.id);
+    }
+
     render() {
         const {films, isFullWidthPlayerActive, toggleFullWidthPlayer, isAuthorized, userData, onSignInClick} = this.props;
         
         const film = getFilmById(films, +this.props.match.params.id);
         const filmsLikeThis = films.filter((f: filmData) => f.genre === film.genre && f.id !== film.id).slice(0, 4);
-
         if (!film) {
           return <Redirect to="/"/>
         }
@@ -138,7 +143,7 @@ class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, n
                       </div>
 
                       <div className="movie-card__desc">
-                        <Tabs film={film} />
+                        <Tabs film={film}/>
                       </div>
                     </div>
                   </div>
@@ -166,9 +171,15 @@ const mapStateToProps = (state, ownProps) => ({
   userData: state[`USER`].userData
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  loadComments: (filmId) => {
+    dispatch(getUserComments(filmId));
+  }
+})
+
 export {MoviePageDetails};
 
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(MoviePageDetails);

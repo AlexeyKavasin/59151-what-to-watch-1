@@ -113,7 +113,8 @@ export interface IMoviePageDetails {
 }
 
 export interface ITabs {
-    film: filmData
+    film: filmData,
+    comments: commentData[]
 }
 
 export interface ITab {
@@ -155,6 +156,17 @@ export interface filmData {
     description: string,
     run_time: number,
     video_link: string
+}
+
+export interface commentData {
+    comment: string,
+    date: string,
+    id: number,
+    rating: number,
+    user: {
+        id: number,
+        name: string
+    }
 }
 
 export interface IAddReview {
