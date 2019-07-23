@@ -155,7 +155,8 @@ export interface filmData {
     rating: number,
     description: string,
     run_time: number,
-    video_link: string
+    video_link: string,
+    background_color: string
 }
 
 export interface commentData {
@@ -176,4 +177,13 @@ export interface IAddReview {
 export interface IAddReviewState {
     comment: string,
     rating: number
+}
+
+export interface IHeader {
+    film: filmData,
+    isFullWidth: boolean,
+    isAuthorized: boolean,
+    userData: null | userData,
+    onSignInClick: () => void,
+    toggleFullWidthPlayer: () => void
 }
