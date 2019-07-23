@@ -123,6 +123,7 @@ Array [
   </div>,
   <MainPage
     filmOnTheMainPage={null}
+    films={null}
     isAuthorizationRequired={false}
     isAuthorized={false}
     isFullWidthPlayerActive={false}

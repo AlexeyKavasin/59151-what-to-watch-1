@@ -4,7 +4,8 @@ import {
   REQUIRED_AUTHORIZATION,
   CHANGE_AUTHORIZATION_STATUS,
   SAVE_USER_DATA,
-  SHOW_MORE_FILMS
+  SHOW_MORE_FILMS,
+  ADD_COMMENT
 } from "./types";
 
 export const fetchFilms = () => (dispatch, getState, api) => {
@@ -21,6 +22,12 @@ export const sendUserData = (email, password) => (dispatch, getState, api) => {
       dispatch(requireAuthorization(false));
       dispatch(saveUSerData(response.data));
     }
+  });
+};
+
+export const sendUserComment = ({comment, rating, filmId}) => (dispatch, getState, api) => {
+  return api.post(`/comments/${filmId}`, {comment, rating}).then((response) => {
+    dispatch(addComment(response.data));
   });
 };
 
@@ -63,5 +70,12 @@ export function showMoreFilms(filmsAmount) {
   return {
     type: SHOW_MORE_FILMS,
     payload: filmsAmount
+  };
+}
+
+export function addComment(comments) {
+  return {
+    type: ADD_COMMENT,
+    payload: comments
   };
 }

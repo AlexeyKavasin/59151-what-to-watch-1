@@ -160,3 +160,8 @@ export interface filmData {
 export interface IAddReview {
     films: filmData[]
 }
+
+export interface IAddReviewState {
+    comment: string,
+    rating: number
+}

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {connect} from "react-redux";
-import {Link, RouteProps} from 'react-router-dom';
+import {Link, RouteProps, Redirect} from 'react-router-dom';
 import {getFilmById} from "../../redux/reducer/data/selectors.js";
 import {Tabs} from "../tabs/tabs";
 import {withActiveCard} from "../../hocs/with-active-card/with-active-card";
@@ -17,6 +17,10 @@ class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, n
         
         const film = getFilmById(films, +this.props.match.params.id);
         const filmsLikeThis = films.filter((f: filmData) => f.genre === film.genre && f.id !== film.id).slice(0, 4);
+
+        if (!film) {
+          return <Redirect to="/"/>
+        }
 
         return (
           <React.Fragment>

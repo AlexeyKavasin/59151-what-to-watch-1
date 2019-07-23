@@ -128,12 +128,6 @@ Array [
                 My list
               </span>
             </button>
-            <a
-              className="btn movie-card__button"
-              href="add-review.html"
-            >
-              Add review
-            </a>
           </div>
         </div>
       </div>
@@ -292,42 +286,7 @@ Array [
       </h2>
       <div
         className="catalog__movies-list"
-      >
-        <article
-          className="small-movie-card catalog__movies-card"
-          data-id={1}
-          onMouseLeave={[Function]}
-          onMouseOver={[Function]}
-        >
-          <a
-            className="small-movie-card__image"
-            href="#/film/1"
-            onClick={[Function]}
-          >
-            <video
-              height="175"
-              muted={true}
-              poster="https://es31-server.appspot.com/wtw/static/film/preview/matrix.jpg"
-              width="280"
-            >
-              <source
-                src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
-              />
-            </video>
-          </a>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="#/film/1"
-              onClick={[Function]}
-            >
-              Matrix
-            </a>
-          </h3>
-        </article>
-      </div>
+      />
     </section>
     <footer
       className="page-footer"

@@ -1,7 +1,7 @@
 import {
   REQUIRED_AUTHORIZATION,
   CHANGE_AUTHORIZATION_STATUS,
-  SAVE_USER_DATA,
+  SAVE_USER_DATA
 } from "../types";
 
 const initialState = {
