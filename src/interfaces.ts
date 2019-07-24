@@ -6,7 +6,8 @@ export interface IApp {
     films: filmData,
     filmOnTheMainPage: filmData,
     toggleFullWidthPlayer: () => void,
-    onSignInClick: () => void
+    onSignInClick: () => void,
+    onFavoritesChange: (film: filmData) => void
 }
 
 export interface IFullWidthPlayer {
@@ -109,7 +110,8 @@ export interface IWithActiveCardState {
 }
 
 export interface IMoviePageDetails {
-    films: filmData[]
+    films: filmData[],
+    onFavoritesChange: (film: filmData) => void
 }
 
 export interface ITabs {
@@ -156,7 +158,8 @@ export interface filmData {
     description: string,
     run_time: number,
     video_link: string,
-    background_color: string
+    background_color?: string,
+    is_favorite?: boolean
 }
 
 export interface commentData {
@@ -185,5 +188,6 @@ export interface IHeader {
     isAuthorized: boolean,
     userData: null | userData,
     onSignInClick: () => void,
+    onFavoritesChange: (film: filmData) => void,
     toggleFullWidthPlayer: () => void
 }

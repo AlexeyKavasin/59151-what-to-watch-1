@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {requireAuthorization} from './redux/reducer/actions';
+import {requireAuthorization} from './redux/reducer/actions.js';
 
 export const configureAPI = (dispatch) => {
   const api = axios.create({
@@ -10,7 +10,8 @@ export const configureAPI = (dispatch) => {
 
   const onSuccess = (response) => response;
   const onFail = (error) => {
-    if (error.response.status === 401) {
+    // в заданиях завязано на 403, но логичнее 401
+    if (error.response.status === 401 || error.response.status === 403) {
       history.pushState(null, null, `/login`);
       dispatch(requireAuthorization(true));
     }

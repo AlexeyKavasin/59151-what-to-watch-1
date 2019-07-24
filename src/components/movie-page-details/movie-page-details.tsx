@@ -19,7 +19,7 @@ class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, n
     }
 
     render() {
-        const {films, isFullWidthPlayerActive, toggleFullWidthPlayer, isAuthorized, userData, onSignInClick} = this.props;
+        const {films, isFullWidthPlayerActive, toggleFullWidthPlayer, isAuthorized, userData, onSignInClick, onFavoritesChange} = this.props;
         
         const film = getFilmById(films, +this.props.match.params.id);
         const filmsLikeThis = films.filter((f: filmData) => f.genre === film.genre && f.id !== film.id).slice(0, 4);
@@ -39,7 +39,7 @@ class MoviePageDetails extends React.Component<IMoviePageDetails & RouteProps, n
               />
             ) : (
               <React.Fragment>
-                <Header onSignInClick={onSignInClick} userData={userData} isAuthorized={isAuthorized} isFullWidth={true} film={film} toggleFullWidthPlayer={toggleFullWidthPlayer}/>
+                <Header onFavoritesChange={onFavoritesChange} onSignInClick={onSignInClick} userData={userData} isAuthorized={isAuthorized} isFullWidth={true} film={film} toggleFullWidthPlayer={toggleFullWidthPlayer}/>
                 <div className="page-content">
                   <section className="catalog catalog--like-this">
                     <h2 className="catalog__title">More like this</h2>

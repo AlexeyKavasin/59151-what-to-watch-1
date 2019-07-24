@@ -6,3 +6,4 @@ export const SAVE_USER_DATA = `SAVE_USER_DATA`;
 export const SHOW_MORE_FILMS = `SHOW_MORE_FILMS`;
 export const ADD_COMMENT = `ADD_COMMENT`;
 export const LOAD_COMMENTS = `LOAD_COMMENTS`;
+export const TOGGLE_FAVORITE = `TOGGLE_FAVORITE`;

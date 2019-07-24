@@ -11,6 +11,7 @@ import MoviePageDetails from "../movie-page-details/movie-page-details";
 import {SvgIcons} from "../svg-icons/svg-icons";
 import {withActiveFullWidthPlayer} from "../../hocs/with-active-full-width-player/with-active-full-width-player";
 import AddReview from "../add-review/add-review";
+import {toggleUserFavourites} from "../../redux/reducer/actions.js";
 
 const FavoritesWithPrivateRoute = withPrivateRoute(Favorites);
 const MainPageWithFullWidthPlayer = withActiveFullWidthPlayer(MainPage);
@@ -21,10 +22,10 @@ class App extends React.PureComponent<IApp, null> {
     return <React.Fragment>
       <SvgIcons/>
       <Switch>
-        <Route path="/" exact component={() => <MainPageWithFullWidthPlayer {...this.props}/>}/>
+        <Route path="/" exact component={() => <MainPageWithFullWidthPlayer {...this.props} />}/>
         <Route path="/login" component={SignIn}/>
         <Route path="/favorites" component={FavoritesWithPrivateRoute}/>
-        <Route path="/film/:id" component={(props) => <MoviePageDetailsWithFullWidthPlayer {...props} />}/>
+        <Route path="/film/:id" component={(props) => <MoviePageDetailsWithFullWidthPlayer {...props} onFavoritesChange={this.props.onFavoritesChange} />}/>
         <Route path="/reviews/add/:id" component={(props) => <AddReview {...props} films={this.props.films}/> }/>
         <Route component={() => <h1>404 - Not found</h1>}/>
       </Switch>
@@ -43,6 +44,10 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
   onSignInClick: () => {
     dispatch(requireAuthorization(true));
+  },
+
+  onFavoritesChange: (film) => {
+    dispatch(toggleUserFavourites(film))
   }
 });
 

@@ -19,6 +19,7 @@ describe(`App snapshot tests`, () => {
               isAuthorizationRequired={false}
               isAuthorized={false}
               onSignInClick={jest.fn()}
+              onFavoritesChange={jest.fn()}
               userData={null}
               isFullWidthPlayerActive={false}
               filmOnTheMainPage={null}

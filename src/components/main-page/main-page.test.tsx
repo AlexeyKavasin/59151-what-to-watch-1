@@ -39,6 +39,7 @@ describe(`MainPage snapshot tests`, () => {
               isAuthorizationRequired={false}
               isAuthorized={false}
               onSignInClick={mock}
+              onFavoritesChange={mock}
               userData={null}
               isFullWidthPlayerActive={false}
               toggleFullWidthPlayer={mock}

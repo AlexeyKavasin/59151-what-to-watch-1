@@ -23,7 +23,7 @@ class MainPage extends React.PureComponent<IApp, null> {
           filmName={filmOnTheMainPage.name}
         /> :
       <React.Fragment>
-        <Header {...this.props} isFullWidth={false} film={filmOnTheMainPage} toggleFullWidthPlayer={toggleFullWidthPlayer}/>
+        <Header {...this.props} isFullWidth={false} film={filmOnTheMainPage}/>
         <div className="page-content">
           <Catalog/>
           <Footer/>

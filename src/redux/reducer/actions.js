@@ -6,7 +6,8 @@ import {
   SAVE_USER_DATA,
   SHOW_MORE_FILMS,
   LOAD_COMMENTS,
-  ADD_COMMENT
+  ADD_COMMENT,
+  TOGGLE_FAVORITE
 } from "./types";
 
 export const fetchFilms = () => (dispatch, getState, api) => {
@@ -37,6 +38,12 @@ export const sendUserComment = ({comment, rating, filmId}) => (dispatch, getStat
     dispatch(addComment(response.data));
   });
 };
+
+export const toggleUserFavourites = (film) => (dispatch, getState, api) => {
+  return api.post(`/favorite/${film.id}/${film.is_favorite ? 0 : 1}`).then((response) => {
+    dispatch(toggleFavorite(response.data));
+  })
+}
 
 export function loadFilms(fetchedFilms) {
   return {
@@ -92,4 +99,11 @@ export function addComment(comments) {
     type: ADD_COMMENT,
     payload: comments
   };
+}
+
+export function toggleFavorite(film) {
+  return {
+    type: TOGGLE_FAVORITE,
+    payload: film
+  }
 }
