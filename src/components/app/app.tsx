@@ -11,7 +11,7 @@ import MoviePageDetails from "../movie-page-details/movie-page-details";
 import {SvgIcons} from "../svg-icons/svg-icons";
 import {withActiveFullWidthPlayer} from "../../hocs/with-active-full-width-player/with-active-full-width-player";
 import AddReview from "../add-review/add-review";
-import {toggleUserFavourites} from "../../redux/reducer/actions.js";
+import {toggleUserFavourites, fetchFavoriteFilms} from "../../redux/reducer/actions.js";
 
 const FavoritesWithPrivateRoute = withPrivateRoute(Favorites);
 const MainPageWithFullWidthPlayer = withActiveFullWidthPlayer(MainPage);
@@ -47,8 +47,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(requireAuthorization(true));
   },
 
-  onFavoritesChange: (film) => {
-    dispatch(toggleUserFavourites(film));
+  onFavoritesChange: async (film) => {
+    await dispatch(toggleUserFavourites(film));
+    dispatch(fetchFavoriteFilms());
   }
 });
 

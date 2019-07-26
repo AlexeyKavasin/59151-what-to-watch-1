@@ -12,6 +12,7 @@ class Tabs extends React.Component<ITabs, ITabsState> {
         }
 
         this.onTabClick = this.onTabClick.bind(this);
+        this.formatDate = this.formatDate.bind(this);
     }
     
     onTabClick(evt: React.MouseEvent<HTMLElement>, tabId: number): void {
@@ -21,6 +22,14 @@ class Tabs extends React.Component<ITabs, ITabsState> {
                 activeTab: tabId
             })
         }
+    }
+
+    formatDate(date: string): string {
+      const d = new Date(date).getDate();
+      const m = new Date(date).getMonth() + 1;
+      const y = new Date(date).getFullYear();
+
+      return [d, m, y].map((val: number) => val > 10 ? val : `0${val}`).join('.');
     }
 
     getRatingText(rating: number): string {
@@ -167,7 +176,7 @@ class Tabs extends React.Component<ITabs, ITabsState> {
                             className="review__date"
                             dateTime={comment.date}
                           >
-                            {comment.date}
+                            {this.formatDate(comment.date)}
                           </time>
                         </footer>
                       </blockquote>
@@ -194,7 +203,7 @@ class Tabs extends React.Component<ITabs, ITabsState> {
                             className="review__date"
                             dateTime={comment.date}
                           >
-                            {comment.date}
+                            {this.formatDate(comment.date)}
                           </time>
                         </footer>
                       </blockquote>

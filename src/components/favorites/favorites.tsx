@@ -12,6 +12,10 @@ class Favorites extends React.PureComponent<IFavorites, null> {
   render() {
     const {isAuthorized, userData, onSignInClick, favoriteFilms, filmsToShow} = this.props;
 
+    if (!isAuthorized) {
+      return <Redirect to="/login"/>
+    }
+
     return <React.Fragment>
       <div className="user-page">
         <header className="page-header user-page__head">
