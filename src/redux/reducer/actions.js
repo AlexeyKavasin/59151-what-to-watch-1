@@ -7,7 +7,8 @@ import {
   SHOW_MORE_FILMS,
   LOAD_COMMENTS,
   ADD_COMMENT,
-  TOGGLE_FAVORITE
+  TOGGLE_FAVORITE,
+  LOAD_FAVORITE_FILMS
 } from "./types";
 
 export const fetchFilms = () => (dispatch, getState, api) => {
@@ -15,6 +16,12 @@ export const fetchFilms = () => (dispatch, getState, api) => {
     dispatch(loadFilms(response.data));
   });
 };
+
+export const fetchFavoriteFilms = () => (dispatch, getState, api) => {
+  return api.get(`/favorite`).then((response) => {
+    dispatch(loadFavoriteFilms(response.data));
+  });
+}
 
 export const sendUserData = (email, password) => (dispatch, getState, api) => {
   return api.post(`/login`, {email, password}).then((response) => {
@@ -50,6 +57,13 @@ export function loadFilms(fetchedFilms) {
     type: LOAD_FILMS,
     payload: fetchedFilms
   };
+}
+
+export function loadFavoriteFilms(favoriteFilms) {
+  return {
+    type: LOAD_FAVORITE_FILMS,
+    payload: favoriteFilms
+  }
 }
 
 export function loadComments(fetchComments) {

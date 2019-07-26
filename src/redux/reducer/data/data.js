@@ -4,13 +4,15 @@ import {
   SHOW_MORE_FILMS,
   ADD_COMMENT,
   LOAD_COMMENTS,
-  TOGGLE_FAVORITE
+  TOGGLE_FAVORITE,
+  LOAD_FAVORITE_FILMS
 } from "../types";
 import {ALL_GENRES, FILMS_TO_SHOW_PER_LOAD} from "../../../constants/constants";
 
 const initialState = {
   currentGenre: ALL_GENRES,
   films: [],
+  favoriteFilms: [],
   filmsToShow: FILMS_TO_SHOW_PER_LOAD,
   comments: []
 };
@@ -41,6 +43,11 @@ export const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         comments: action.payload
       });
+
+    case LOAD_FAVORITE_FILMS:
+      return Object.assign({}, state, {
+        favoriteFilms: action.payload
+      })
 
     case TOGGLE_FAVORITE:
       const films = [

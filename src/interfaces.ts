@@ -76,7 +76,8 @@ export interface IVideoPlayer {
 }
 
 export interface ISignIn {
-    authorizeUser: (email: string, password: string) => void
+    authorizeUser: (email: string, password: string) => void,
+    loadUserFavorites: () => void
 }
 
 export interface ISignInState {
@@ -190,4 +191,12 @@ export interface IHeader {
     onSignInClick: () => void,
     onFavoritesChange: (film: filmData) => void,
     toggleFullWidthPlayer: () => void
+}
+
+export interface IFavorites {
+    isAuthorized: boolean,
+    userData: null | userData,
+    filmsToShow: number,
+    favoriteFilms?: filmData[],
+    onSignInClick: () => void,
 }

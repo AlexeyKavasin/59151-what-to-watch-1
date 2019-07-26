@@ -1,9 +1,17 @@
 import * as React from "react";
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {Footer} from '../footer/footer';
+import {IFavorites} from '../../interfaces';
+import MovieList from '../movie-list/movielist';
+import {withActiveCard} from '../../hocs/with-active-card/with-active-card';
 
-export class Favorites extends React.PureComponent {
+const MovieListWithActiveCard = withActiveCard(MovieList);
+
+class Favorites extends React.PureComponent<IFavorites, null> {
   render() {
+    const {isAuthorized, userData, onSignInClick, favoriteFilms, filmsToShow} = this.props;
+
     return <React.Fragment>
       <div className="user-page">
         <header className="page-header user-page__head">
@@ -18,108 +26,19 @@ export class Favorites extends React.PureComponent {
           <h1 className="page-title user-page__title">My list</h1>
 
           <div className="user-block">
+          {isAuthorized && userData ? (
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              <img src={`https://es31-server.appspot.com/${userData.avatar_url}`} alt={userData.name} width="63" height="63" />
             </div>
+          ) :
+            (<Link className="user-block__link" to="/login" onClick={onSignInClick}>Sign In</Link>)
+          }
           </div>
         </header>
 
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <div className="catalog__movies-list">
-            <article className="small-movie-card catalog__movies-card">
-              <button className="small-movie-card__play-btn" type="button">Play</button>
-              <div className="small-movie-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <button className="small-movie-card__play-btn" type="button">Play</button>
-              <div className="small-movie-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <button className="small-movie-card__play-btn" type="button">Play</button>
-              <div className="small-movie-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <button className="small-movie-card__play-btn" type="button">Play</button>
-              <div className="small-movie-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-              </h3>
-            </article>
-
-
-            <article className="small-movie-card catalog__movies-card">
-              <button className="small-movie-card__play-btn" type="button">Play</button>
-              <div className="small-movie-card__image">
-                <img src="img/we-need-to-talk-about-kevin.jpg" alt="We need to talk about Kevin" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">We need to talk about Kevin</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <button className="small-movie-card__play-btn" type="button">Play</button>
-              <div className="small-movie-card__image">
-                <img src="img/what-we-do-in-the-shadows.jpg" alt="What We Do in the Shadows" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">What We Do in the Shadows</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <button className="small-movie-card__play-btn" type="button">Play</button>
-              <div className="small-movie-card__image">
-                <img src="img/revenant.jpg" alt="Revenant" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Revenant</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <button className="small-movie-card__play-btn" type="button">Play</button>
-              <div className="small-movie-card__image">
-                <img src="img/johnny-english.jpg" alt="Johnny English" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Johnny English</a>
-              </h3>
-            </article>
-
-
-            <article className="small-movie-card catalog__movies-card">
-              <button className="small-movie-card__play-btn" type="button">Play</button>
-              <div className="small-movie-card__image">
-                <img src="img/shutter-island.jpg" alt="Shutter Island" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Shutter Island</a>
-              </h3>
-            </article>
-          </div>
+          { favoriteFilms && favoriteFilms.length ? <MovieListWithActiveCard films={favoriteFilms} filmsToShow={filmsToShow}/> : null }
         </section>
 
         <Footer/>
@@ -127,3 +46,15 @@ export class Favorites extends React.PureComponent {
     </React.Fragment>;
   }
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  ownProps,
+  favoriteFilms: state[`DATA`].favoriteFilms
+});
+
+export {Favorites};
+
+export default connect(
+    mapStateToProps,
+    null
+)(Favorites);

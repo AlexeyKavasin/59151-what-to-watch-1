@@ -1,7 +1,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
-import {sendUserData} from "../../redux/reducer/actions";
+import {sendUserData, fetchFavoriteFilms} from "../../redux/reducer/actions";
 import {ISignIn, ISignInState} from "../../interfaces";
 import {Footer} from "../footer/footer";
 import {SvgIcons} from "../svg-icons/svg-icons";
@@ -38,7 +38,8 @@ class SignIn extends React.PureComponent<ISignIn, ISignInState> {
   }
 
   render() {
-    const {authorizeUser} = this.props;
+    const {authorizeUser, loadUserFavorites} = this.props;
+
     return <React.Fragment>
       <SvgIcons/>
       <div className="user-page">
@@ -58,6 +59,7 @@ class SignIn extends React.PureComponent<ISignIn, ISignInState> {
             e.preventDefault();
             if (this.state.isValidEmail && this.state.isValidPassword) {
               authorizeUser(this.state.email, this.state.password);
+              loadUserFavorites();
             }
           }}>
             <div className="sign-in__fields">
@@ -86,6 +88,9 @@ class SignIn extends React.PureComponent<ISignIn, ISignInState> {
 const mapDispatchToProps = (dispatch) => ({
   authorizeUser: (email, password) => {
     dispatch(sendUserData(email, password));
+  },
+  loadUserFavorites: () => {
+    dispatch(fetchFavoriteFilms());
   }
 });
 

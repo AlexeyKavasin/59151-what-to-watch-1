@@ -86,7 +86,9 @@ class Header extends React.PureComponent<IHeader, null> {
                             </svg>
                             <span>Play</span>
                           </button>
-                          <button
+
+                          {isAuthorized && userData ? (
+                            <button
                             className="btn btn--list movie-card__button"
                             type="button"
                             onClick={this.toggleFavorite}
@@ -100,6 +102,8 @@ class Header extends React.PureComponent<IHeader, null> {
                             </svg>
                             <span>My list</span>
                           </button>
+                          ) : null}
+                          
                           {isAuthorized && userData ? (
                             <Link
                               to={`/reviews/add/${film.id}`}
@@ -180,12 +184,22 @@ class Header extends React.PureComponent<IHeader, null> {
                       </svg>
                       <span>Play</span>
                     </button>
-                    <button onClick={this.toggleFavorite} className="btn btn--list movie-card__button" type="button">
-                      <svg viewBox="0 0 19 20" width="19" height="20">
+                    {isAuthorized && userData ? (
+                      <button
+                      className="btn btn--list movie-card__button"
+                      type="button"
+                      onClick={this.toggleFavorite}
+                    >
+                      <svg
+                        viewBox="0 0 19 20"
+                        width="19"
+                        height="20"
+                      >
                         {film.is_favorite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
                       </svg>
                       <span>My list</span>
                     </button>
+                    ) : null}
                   </div>
                 </div>
               </div>

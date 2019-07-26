@@ -66,7 +66,7 @@ const mapDispatchToProps = (dispatch) => ({
   loadComments: (filmId) => {
     dispatch(getUserComments(filmId));
   }
-})
+});
 
 export {MoviePageDetails};
 

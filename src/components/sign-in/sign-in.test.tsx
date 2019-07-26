@@ -9,7 +9,7 @@ describe(`SignIn snapshot tests`, () => {
     const tree = renderer
       .create(
           <HashRouter>
-            <SignIn authorizeUser={mock}/>
+            <SignIn loadUserFavorites={mock} authorizeUser={mock}/>
           </HashRouter>)
       .toJSON();
 
