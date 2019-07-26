@@ -127,6 +127,7 @@ Array [
     isAuthorizationRequired={false}
     isAuthorized={false}
     isFullWidthPlayerActive={false}
+    onFavoritesChange={[MockFunction]}
     onSignInClick={[MockFunction]}
     toggleFullWidthPlayer={[Function]}
     userData={null}

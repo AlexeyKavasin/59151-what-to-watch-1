@@ -42,8 +42,8 @@ export const sendUserComment = ({comment, rating, filmId}) => (dispatch, getStat
 export const toggleUserFavourites = (film) => (dispatch, getState, api) => {
   return api.post(`/favorite/${film.id}/${film.is_favorite ? 0 : 1}`).then((response) => {
     dispatch(toggleFavorite(response.data));
-  })
-}
+  });
+};
 
 export function loadFilms(fetchedFilms) {
   return {
@@ -105,5 +105,5 @@ export function toggleFavorite(film) {
   return {
     type: TOGGLE_FAVORITE,
     payload: film
-  }
+  };
 }

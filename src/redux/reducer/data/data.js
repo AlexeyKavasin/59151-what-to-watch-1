@@ -49,7 +49,7 @@ export const reducer = (state = initialState, action) => {
       ].sort((curr, next) => curr.id - next.id);
 
       return Object.assign({}, state, {
-        films: films
+        films
       });
   }
 

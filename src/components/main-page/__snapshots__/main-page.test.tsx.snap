@@ -3,7 +3,12 @@
 exports[`MainPage snapshot tests MainPage renders correctly 1`] = `
 Array [
   <section
-    className="movie-card"
+    className="movie-card "
+    style={
+      Object {
+        "backgroundColor": undefined,
+      }
+    }
   >
     <div
       className="movie-card__bg"
@@ -124,6 +129,7 @@ Array [
             </button>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
