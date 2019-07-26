@@ -47,7 +47,7 @@ export const reducer = (state = initialState, action) => {
     case LOAD_FAVORITE_FILMS:
       return Object.assign({}, state, {
         favoriteFilms: action.payload
-      })
+      });
 
     case TOGGLE_FAVORITE:
       const films = [

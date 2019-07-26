@@ -21,7 +21,7 @@ export const fetchFavoriteFilms = () => (dispatch, getState, api) => {
   return api.get(`/favorite`).then((response) => {
     dispatch(loadFavoriteFilms(response.data));
   });
-}
+};
 
 export const sendUserData = (email, password) => (dispatch, getState, api) => {
   return api.post(`/login`, {email, password}).then((response) => {
@@ -63,7 +63,7 @@ export function loadFavoriteFilms(favoriteFilms) {
   return {
     type: LOAD_FAVORITE_FILMS,
     payload: favoriteFilms
-  }
+  };
 }
 
 export function loadComments(fetchComments) {
